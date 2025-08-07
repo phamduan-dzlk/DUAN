@@ -1,5 +1,6 @@
-  <?php if (isset($message)) echo $message; ?>
-<a href="<?=BASE_URL?>">tro lai</a>
+<?php if (isset($message)) echo $message; ?>
+<a href="<?=BASE_URL?>" class="btn btn-secondary mb-3">← Trở lại</a>
+
 <table class="table">
     <tr>
         <th>menu</th>

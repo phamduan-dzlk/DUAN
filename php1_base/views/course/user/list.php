@@ -3,11 +3,12 @@
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-road"><br></i>lộ trình
+                    <i class="fa-solid fa-road"><br></i>  lộ trình
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="link-den-trang-backend.html">Backend</a></li>
-                    <li><a class="dropdown-item" href="link-den-trang-frontend.html">Frontend</a></li>
+                    <li><a class="dropdown-item" href="<?=BASE_URL.'?action=category'?>">Ưu đãi</a></li>
+                    <li><a class="dropdown-item" href="<?=BASE_URL.'?action=category&category=2'?>">Backend</a></li>
+                    <li><a class="dropdown-item" href="<?=BASE_URL.'?action=category&category=1'?>">Frontend</a></li>
                 </ul>
             </li>
         </ul>

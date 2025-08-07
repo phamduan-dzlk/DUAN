@@ -1,4 +1,4 @@
-<a href="<?=BASE_URL_ADMIN?>">trở lại</a>
+<a href="<?=BASE_URL_ADMIN?>"class="btn btn-secondary mb-3">← Trở lại</a>
 <?php if (isset($message)) echo $message; ?>
 <form action="<?=BASE_URL.'?mode=admin&action=check'?>" method="post">
   <div  class="mb-3">

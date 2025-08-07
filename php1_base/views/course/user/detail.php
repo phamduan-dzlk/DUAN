@@ -28,7 +28,7 @@ if(isset($_GET['id'])){
                 <td><?=$data['id']?></td>
                 <td><?=$data['name']?></td>
                 <td><img src="<?=BASE_ASSETS_UPLOADS.$data['thumbnail']?>" alt="" class="img-thumbnail" width="100"></td>
-                <td><?=$data['instructor_id']?></td>
+                <td><?=$data['instructorName']?></td>
                 <td><?=$data['description']?></td>
                 <td><?=number_format($data['price'], 0, ',', '.')?> đ</td>
                 <td><?=$data['categoryName']?></td>
@@ -51,7 +51,7 @@ if(isset($_GET['id'])){
                 <div class="card-body">
                     <h5 class="card-title text-primary"><?= $data['name'] ?></h5>
                     <p class="mb-1"><strong>Định danh:</strong> <?= $data['id'] ?></p>
-                    <p class="mb-1"><strong>Giảng viên:</strong> <?= $data['instructor_id'] ?></p>
+                    <p class="mb-1"><strong>Giảng viên:</strong> <?=$data['instructorName']?></p>
                     <p class="mb-1"><strong>Giá:</strong> <?= number_format($data['price'], 0, ',', '.') ?> đ</p>
                     <p class="mb-1"><strong>lộ trình</strong> <?= $data['categoryName'] ?></p>
                     <p class="mb-1"><strong>thời hạn</strong> <?= $data['duration'] ?></p>

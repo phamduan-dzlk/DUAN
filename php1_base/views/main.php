@@ -14,59 +14,56 @@
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-  <a class="navbar-brand fw-bold text-uppercase" href="<?= BASE_URL ?>">phaun</a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse justify-content-between" id="mainNav">
-    <ul class="navbar-nav me-auto">
-      <li class="nav-item">
-        <a class="nav-link text-uppercase" href="<?= BASE_URL ?>"><b>HOME</b></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-uppercase" href="<?= BASE_URL ?>"><b>LIÊN HỆ</b></a>
-      </li>
-        <?php if(isset($_GET['mode']) && $_GET['mode'] == 'admin'){?>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="<?= BASE_URL.'?mode=admin&action=register' ?>" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">quản lý trang wep</a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="<?=BASE_URL.'?mode=admin&action=user'?>">Quản lý người dùng</a></li><hr>
-                  <li><a class="dropdown-item" href="<?=BASE_URL.'?mode=admin&action=create'?>">Thêm khóa học</a></li><hr>
-                    <li><a class="dropdown-item" href="<?=BASE_URL.'?mode=admin'?>">Chỉnh sủa lộ trình</a></li>
-                </ul>            
-          </li>      
-        <?php }else{?>      
-          <li class="nav-item">
-            <a class="nav-link text-uppercase" href="<?= BASE_URL.'?mode=admin&action=register' ?>">quản lý trang wep</a>
-          </li>
-        <?php }?>
-    </ul>
-            <!--<li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-road"><br></i>lộ trình
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="link-den-trang-backend.html">Backend</a></li>
-                    <li><a class="dropdown-item" href="link-den-trang-frontend.html">Frontend</a></li>
-                </ul>
-            </li> -->
-    <div class="d-flex align-items-center">
-      <?php if (isset($message)) echo $message; ?>
-      <?php if (isset($_SESSION['msg'])): ?>
-        <p class="mb-0 me-3 text-<?= $_SESSION['status'] ? 'success' : 'danger' ?>">
-          <?= $_SESSION['msg']; unset($_SESSION['msg'], $_SESSION['status']); ?>
-        </p>
-      <?php endif; ?>
+  <div class="container px-4">
+    <a class="navbar-brand fw-bold text-uppercase" href="<?= BASE_URL ?>">phaun</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse justify-content-between" id="mainNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link text-uppercase" href="<?= BASE_URL ?>"><b>Trang chủ</b></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-uppercase" href="<?= BASE_URL . '?action=contact'?>"><b>LIÊN HỆ</b></a>
+        </li>
+          <?php if(isset($_GET['mode']) && $_GET['mode'] == 'admin'){?>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="<?= BASE_URL.'?mode=admin&action=register' ?>" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">quản lý trang web</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="<?=BASE_URL.'?mode=admin&action=user'?>">Quản lý người dùng</a></li><hr>
+                    <li><a class="dropdown-item" href="<?=BASE_URL.'?mode=admin&action=create'?>">Thêm khóa học</a></li><hr>
+                      <li><a class="dropdown-item" href="<?=BASE_URL.'?mode=admin'?>">Chỉnh sủa lộ trình</a></li>
+                  </ul>            
+            </li>      
+          <?php }else{?>      
+            <li class="nav-item">
+              <a class="nav-link text-uppercase" href="<?= BASE_URL.'?mode=admin&action=register' ?>">quản lý trang web</a>
+            </li>
+          <?php }?>
+      </ul>
 
-      <?php if (empty($_SESSION['user'])): ?>
-        <a href="<?= BASE_URL . '?action=login' ?>" class="btn btn-outline-light me-2">Đăng nhập</a>
-        <a href="<?= BASE_URL . '?action=register' ?>" class="btn btn-primary">Đăng ký</a>
-      <?php else: ?>
-        <span class="text-success me-3">Chào, <strong><?= $_SESSION['user'] ?>_san</strong>!</span>
-        <a href="<?= BASE_URL . '?action=infor' ?>" class="btn btn-outline-info me-2">Hồ sơ</a>
-        <a href="<?= BASE_URL . '?action=logout' ?>" class="btn btn-outline-danger">Đăng xuất</a>
-      <?php endif; ?>
+      <div class="d-flex align-items-center">
+        <Span style="margin: 10px;">
+          <?php if (isset($message)) echo $message; ?>
+          <?php if (isset($_SESSION['msg'])): ?>
+            <p class="mb-0 me-3 text-<?= $_SESSION['status'] ? 'success' : 'danger' ?>">
+              <?= $_SESSION['msg']; unset($_SESSION['msg'], $_SESSION['status']); ?>
+            </p>
+          <?php endif; ?>        
+        </Span>
+
+        <!--  -->
+        <?php if (empty($_SESSION['user'])): ?>
+          <a href="<?= BASE_URL . '?action=login' ?>" class="btn btn-outline-light me-2">Đăng nhập</a>
+          <a href="<?= BASE_URL . '?action=register' ?>" class="btn btn-primary">Đăng ký</a>
+        <?php else: ?>
+          <span class="text-success me-3">Chào, <strong><?= $_SESSION['user'] ?>_san</strong>!</span>
+          <a href="<?= BASE_URL . '?action=infor' ?>" class="btn btn-outline-info me-2">Hồ sơ</a>
+          <a href="<?= BASE_URL . '?action=logout' ?>" class="btn btn-outline-danger">Đăng xuất</a>
+        <?php endif; ?>
+      </div>
     </div>
   </div>
 </nav>

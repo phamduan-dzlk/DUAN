@@ -33,5 +33,7 @@ if(isset($_GET['mode']) && $_GET['mode']=='admin'){
         'delete'         => (new HomeController)->delete(),
         'logout'         => (new HomeController)->logout(),
         'comment'         => (new HomeController)->comment(),
+        'category'         => (new HomeController)->category(),
+        'contact'         => (new HomeController)->contact(),
     };    
 }

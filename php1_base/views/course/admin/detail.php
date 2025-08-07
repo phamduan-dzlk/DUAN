@@ -1,4 +1,4 @@
-<a href="<?=BASE_URL_ADMIN?>">trở lại</a>
+
 <?php 
 $comment_type = $_GET['mode'] ??'user';
 if(isset($_GET['id'])){
@@ -7,8 +7,7 @@ if(isset($_GET['id'])){
 
 ?>
 <div class="container">
-
-
+<a href="<?=BASE_URL_ADMIN?>"class="btn btn-secondary mb-3">← Trở lại</a>    
     <table class="table">
         <tr>
             <th>định danh</th>
@@ -33,7 +32,7 @@ if(isset($_GET['id'])){
                 <td>
                     <a href="<?=BASE_URL.'?mode=admin&action=detail&id='.$data['id']?>"><button class="btn btn-primary">xem chi tiet</button></a>
                     <a href="<?=BASE_URL.'?mode=admin&action=edit&id='.$data['id']?>"><button class="btn btn-primary">Sửa </button></a>
-                    <a href="<?=BASE_URL.'?mode=admin&action=delete&id='.$data['id']?>"><button class="btn btn-primary">xóa </button></a>
+                    <a href="<?=BASE_URL.'?mode=admin&action=delete&id='.$data['id']?>"><button class="btn btn-primary" onclick=" return(confirm('bạn có muốn xóa không?'))">xóa </button></a>
                 </td>
             </tr>
     </table>

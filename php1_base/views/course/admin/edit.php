@@ -1,4 +1,5 @@
-<a href="<?=BASE_URL_ADMIN?>">trở lại</a>
+<div class="container">
+<a href="<?=BASE_URL_ADMIN?>"class="btn btn-secondary mb-3">← Trở lại</a>
 <form action="<?=BASE_URL.'?mode=admin&action=update'?>" method="post" enctype="multipart/form-data">
     <p>
         <label for="">name</label>
@@ -28,10 +29,15 @@
             <?php }?>
         </select>
     </p>
+    <p>
+        <label for="">duration</label>
+        <input type="number" name="duration" id="" value="<?=$data['duration']?>">
+    </p>
     <input type="hidden" name="id" id="" value="<?=$data['id']?>">
     <p>
         <label for="">thumbnail</label>
         <input type="file" name="thumbnail" id="">
     </p>
-    <button type="submit">luu</button>
+    <button type="submit">Sửa khóa học</button>
 </form>
+</div>

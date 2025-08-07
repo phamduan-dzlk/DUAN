@@ -1,5 +1,7 @@
 
 <?php if (isset($message)) echo $message; ?>
+<a href="<?=BASE_URL?>" class="btn btn-secondary mb-3">← Trở lại</a>
+
 <form action="<?=BASE_URL.'?action=check'?>" method="post">
     <p>
         <label for="">username</label>

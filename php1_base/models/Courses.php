@@ -47,13 +47,27 @@ class Courses extends BaseModel{
     }
     function search($keyword){
         $key="%$keyword%";
-        $sql="SELECT courses.*, instructor.name as instructorName, category.name as categoryName
+        $sql="SELECT courses.*, instructor.name as instructorName, category.name as categoryName 
         FROM courses
         LEFT JOIN instructor
         ON courses.instructor_id = instructor.id
         LEFT JOIN category
         ON courses.category_id = category.id
-        WHERE courses.name LIKE :keyword OR CAST(courses.price AS char) LIKE :keyword";
+        WHERE courses.name LIKE :keyword OR CAST(courses.price AS char) LIKE :keyword OR category.name LIKE :keyword ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([':keyword'=>$key]);
+        $courses= $stmt->fetchAll();
+        return $courses;
+    }
+    function category($keyword){
+        $key="%$keyword%";
+        $sql="SELECT courses.*, instructor.name as instructorName, category.name as categoryName 
+        FROM courses
+        LEFT JOIN instructor
+        ON courses.instructor_id = instructor.id
+        LEFT JOIN category
+        ON courses.category_id = category.id
+        WHERE courses.category_id LIKE :keyword ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':keyword'=>$key]);
         $courses= $stmt->fetchAll();

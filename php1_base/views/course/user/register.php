@@ -1,4 +1,6 @@
 <?php if (isset($message)) echo $message; ?>
+  <a href="<?=BASE_URL?>" class="btn btn-secondary mb-3">← Trở lại</a>
+
 <form action="<?=BASE_URL.'?action=add'?>" method="post">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Username</label>

@@ -45,7 +45,7 @@ class AdminController {
                 $_SESSION['admin'] = $data_admin['adminname'];
                 $_SESSION['id_admin'] = $data_admin['id'];
                 
-                $title='danh sach khoa hoc';
+                $title='Danh sách khóa học';
                 $view="course/admin/list";
                 require_once PATH_VIEW_MAIN;
             }
@@ -96,7 +96,7 @@ class AdminController {
             // echo'<pre>';
             // echo"{$_SESSION['id_admin']}";
             // print_r($data_comment);
-            $title='danh sach khoa hoc';
+            $title='Danh sách khóa học';
             $view="course/admin/detail";
             require_once PATH_VIEW_MAIN;            
         }
@@ -133,18 +133,18 @@ class AdminController {
             }
             $course=$this->courses->get($_GET['id']);
             if(empty($course)){
-                throw new Exception("khong con khoa hoc");
+                throw new Exception("không còn khóa học");
             }
             $row=$this->courses->delete($_GET['id']);
             if($row > 0){
                 $_SESSION['status']=true;
-                $_SESSION['msg']=("da xoa thanh cong");
+                $_SESSION['msg']=("xóa không thành công");
             }else{
-                throw new Exception("xoa khong thanh cong");
+                throw new Exception("xóa không thành công");
             }
         } catch (\Throwable $th) {
                 $_SESSION['status']=false;
-                $_SESSION['msg']=$th->getMessage();            //throw $th;
+                $_SESSION['msg']=$th->getMessage();            
         }
         header('location:'.BASE_URL_ADMIN);
         exit;
@@ -160,6 +160,7 @@ class AdminController {
     function add(){
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $data=$_POST + $_FILES;
+            // debug($data);
             if($data['thumbnail']['size']>0){
                 $data['thumbnail']=upload_file('img',$data['thumbnail']);
             }else{
@@ -226,7 +227,7 @@ class AdminController {
             $data = $this->users->getAll();
                 
         }
-        $title='danh sach khoa hoc';
+        $title='Danh sách khóa học';
         $view="course/admin/user";
         require_once PATH_VIEW_MAIN;
     }
@@ -237,7 +238,7 @@ class AdminController {
         }else{
             $data = $this->courses->getAll();
         }
-        $title='danh sach khoa hoc';
+        $title='Danh sách khóa học';
         $view="course/admin/list";
         require_once PATH_VIEW_MAIN;
     }

@@ -20,9 +20,8 @@
         <th>thông tin</th>
         <th>giá</th>
         <th>lộ trình</th>
-        <th>thời hạn</th>
+        <th>thời hạn/tháng</th>
         <th>thời gian hình thành</th>
-        <th>thời hạn</th>
         <th>hành động</th>
     </tr>
     <?php foreach($data as $v){?>
@@ -34,12 +33,12 @@
             <td><?=$v['description']?></td>
             <td><?=$v['price']?></td>
             <td><?=$v['categoryName']?></td>
-            <td><?=$v['create_at']?></td>
             <td><?=$v['duration']?></td>
+            <td><?=$v['create_at']?></td>
             <td>
                 <a href="<?=BASE_URL.'?mode=admin&action=detail&id='.$v['id']?>"><button class="btn btn-primary">xem chi tiet</button></a>
                 <a href="<?=BASE_URL.'?mode=admin&action=edit&id='.$v['id']?>"><button class="btn btn-primary">Sửa </button></a>
-                <a href="<?=BASE_URL.'?mode=admin&action=delete&id='.$v['id']?>"><button class="btn btn-primary">xóa </button></a>
+                <a href="<?=BASE_URL.'?mode=admin&action=delete&id='.$v['id']?>"><button class="btn btn-primary" onclick=" return(confirm('bạn có muốn xóa không?'))">xóa </button></a>
             </td>
         </tr>
     <?php }?>

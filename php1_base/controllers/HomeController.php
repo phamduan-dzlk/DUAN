@@ -26,7 +26,7 @@ class HomeController
             $_SESSION['user']='';
         }
         $data = $this->courses->getAll();
-        $title='danh sach khoa hoc';
+        $title='Danh sách khóa học';
         $view="course/user/list";
         require_once PATH_VIEW_MAIN;
     }
@@ -81,7 +81,7 @@ class HomeController
             if(!isset($_SESSION['user'])){
                 $message = "<p style='color: red;'>Bạn hãy đăng nhập để đăng ký khóa học.</p>";
             }
-            $title='chi tiet khoa hoc';
+            $title='Chi tiết khóa học';
             $view="course/user/detail";
             require_once PATH_VIEW_MAIN;
         }
@@ -152,7 +152,7 @@ class HomeController
         }else{
             $message = "<p style='color: red;'>Bạn hãy đăng nhập để đăng ký khóa học.</p>";
         }
-        $title='danh sach khoa hoc';
+        $title='Danh sách khóa học';
         $view="course/user/list";
         require_once PATH_VIEW_MAIN;             
     }
@@ -204,7 +204,7 @@ class HomeController
                 $_SESSION['id_user']=$data_in['id'];
                 //cos thể thay thế session cho toàn bộ con người liên quan đến user kể từ khi đăng nhập
                 //ngoại trừ comment vid nó dùng để tất cả mmoij người đều thấy chứ không chỉ có mỗi hết seseion thì không thấy nữa
-                $title='danh sach khoa hoc';
+                $title='Danh sách khóa học';
                 $view="course/user/list";
                 require_once PATH_VIEW_MAIN;    
             }
@@ -220,7 +220,28 @@ class HomeController
         }else{
             $data = $this->courses->getAll();
         }
-        $title='danh sach khoa hoc';
+        $title='Danh sách khóa học';
+        $view="course/user/list";
+        require_once PATH_VIEW_MAIN;
+    }
+    function category(){
+        //tiếp theo là đến hàm category
+        //lấy thông tin từ view form
+        if(isset($_GET['category']) && $_GET['category']!=''){
+            //gọi hàm trong model user để xem người dùng tìm cái gì
+            $data=$this->courses->category($_GET['category']);
+        }else{
+            $data = $this->courses->getAll();
+        }
+        if(!isset($_GET['category'])){
+            $title='Danh sách khóa học';      
+        }else if(isset($_GET['category']) && $_GET['category'] == 1){
+            $title='lộ trình khóa học Frond_End';  
+
+        }else{
+            $title='lộ trình khóa học Back_End';              
+        }
+
         $view="course/user/list";
         require_once PATH_VIEW_MAIN;
     }
@@ -248,6 +269,11 @@ class HomeController
             $this->courses_registration->delete($_GET['id']);            
         }
         header('location:'.BASE_URL.'?action=infor');
+    }
+    function contact(){
+        $title='liên hệ đến chúng TÔI';
+        $view="course/user/contact";
+        require_once PATH_VIEW_MAIN;
     }
     function logout(){
         $_SESSION = [];
