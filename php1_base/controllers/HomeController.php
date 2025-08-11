@@ -22,6 +22,7 @@ class HomeController
     }
     public function index() 
     {
+        $category = $this->courses->getAll_category();
         if(!isset($_SESSION['user'])){
             $_SESSION['user']='';
         }

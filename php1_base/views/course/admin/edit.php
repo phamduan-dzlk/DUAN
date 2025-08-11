@@ -1,5 +1,5 @@
 <div class="container">
-<a href="<?=BASE_URL_ADMIN?>"class="btn btn-secondary mb-3">← Trở lại</a>
+<a href="<?=BASE_URL_ADMIN?> "class="btn btn-secondary mb-3">← Trở lại</a>
 <form action="<?=BASE_URL.'?mode=admin&action=update'?>" method="post" enctype="multipart/form-data">
     <p>
         <label for="">name</label>

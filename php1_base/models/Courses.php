@@ -59,6 +59,18 @@ class Courses extends BaseModel{
         $courses= $stmt->fetchAll();
         return $courses;
     }
+    public function getAll_category()
+    {
+        
+        $sql="SELECT DISTINCT  category.name as categoryName, category.id as category_id
+        FROM courses
+        JOIN category
+        ON courses.category_id = category.id";
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->execute();
+        $category=$stmt->fetchAll();
+        return $category;
+    }
     function category($keyword){
         $key="%$keyword%";
         $sql="SELECT courses.*, instructor.name as instructorName, category.name as categoryName 

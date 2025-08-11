@@ -21,11 +21,12 @@ class Users extends BaseModel{
         return 0;
     }
     function update($data){
-        $sql="UPDATE `users` SET `username`=:username,`password`=:password,`email`=:email,`course_registration`=:course_registration WHERE id=:id";
+        $sql="UPDATE `users` SET `username`=:username,`email`=:email,`avatar_url`=:avatar_url WHERE id=:id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($data);
         return $stmt->rowCount();
     }
+    //
     function update_course($id,$coursesId){
         $sql="UPDATE `users` SET `course_registration`=:coursesId,`instructor_name`=:coursesId WHERE id=:id";
         $stmt = $this->pdo->prepare($sql);
@@ -41,6 +42,13 @@ class Users extends BaseModel{
         $stmt->execute([':id'=>$id]);
         $courses= $stmt->fetch();
         return $courses;
+    }
+    function delete($id){
+        $sql="DELETE FROM users WHERE id=:id";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([':id'=>$id]);
+        return $stmt->rowcount();
     }
     //kiem tra
     function check($username,$password){

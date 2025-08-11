@@ -1,24 +1,27 @@
-<div class="content">
-    <div class="content_left">
-        <ul class="navbar-nav">
+<hr><div class="content">
+    <div class="content_left" style="position: sticky; position:-webkit-sticky; top: 65px; height: 100vh; align-self: flex-start; ">
+        <ul class="navbar-nav" >
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-road"><br></i>  lộ trình
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="<?=BASE_URL.'?action=category'?>">Ưu đãi</a></li>
-                    <li><a class="dropdown-item" href="<?=BASE_URL.'?action=category&category=2'?>">Backend</a></li>
-                    <li><a class="dropdown-item" href="<?=BASE_URL.'?action=category&category=1'?>">Frontend</a></li>
+
+                    <?php foreach($category as $v){?>
+                        <li><a class="dropdown-item" href="<?=BASE_URL.'?action=category&category='.$V['category_id']?>"><?=$v['categoryName']?></a></li>
+                    <?php }?>
                 </ul>
             </li>
         </ul>
+    
     </div>
     <div class="content_right">
         <form class="d-flex my-3" action="" method="get" >
             <!-- đây gửi đi điều muốn tìm kiếm kèm theo một pót ẩn mang giá trị là action để chuyển hướng -->
             <input type="hidden" name="action" value="search" id="">
             <input class="form-control me-2" type="text" name="search" id="" placeholder="nhập để tìm kiếm...">
-            <button class="btn btn-outline-primary" type="submit">tim kiem</button>
+            <button class="btn btn-outline-primary" type="submit">🔍</button>
             <!-- chuyển đến controller -->
         </form>
         <!--  -->
@@ -72,6 +75,7 @@
 }
 
 .content_left {
+    flex: 0 0 19%;
     width: 19%;
     border-right:1px solid #d2d2d2;
 }
@@ -79,6 +83,7 @@
     padding:0;
 }
 .content_right {
+    flex: 1;
     width: 80%;
 }
 

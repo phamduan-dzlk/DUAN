@@ -13,7 +13,7 @@
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4" style="position:sticky;position:-webkit-sticky; top:0;left:0;right:0; z-index:1000;">
   <div class="container px-4">
     <a class="navbar-brand fw-bold text-uppercase" href="<?= BASE_URL ?>">phaun</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
@@ -34,7 +34,7 @@
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="<?=BASE_URL.'?mode=admin&action=user'?>">Quản lý người dùng</a></li><hr>
                     <li><a class="dropdown-item" href="<?=BASE_URL.'?mode=admin&action=create'?>">Thêm khóa học</a></li><hr>
-                      <li><a class="dropdown-item" href="<?=BASE_URL.'?mode=admin'?>">Chỉnh sủa lộ trình</a></li>
+                      <li><a class="dropdown-item" href="<?=BASE_URL.'?mode=admin&action=show_category'?>">Chỉnh sủa lộ trình</a></li>
                   </ul>            
             </li>      
           <?php }else{?>      
@@ -88,3 +88,9 @@
 
 </body>
 </html>
+<style>
+  nav{
+    position: sticky;position:-webkit-sticky;
+    
+  }
+</style>

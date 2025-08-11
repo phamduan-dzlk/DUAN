@@ -52,6 +52,7 @@ class AdminController {
         }
     }
     function index(){
+        $category = $this->courses->getAll_category();
         $data=$this->courses->getAll();
         $title='THƯỢNG ĐẾ ƠI DANH SÁCH KHÓA HỌC Ở ĐÂY!!';
         $view="course/admin/list";
@@ -160,7 +161,7 @@ class AdminController {
     function add(){
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $data=$_POST + $_FILES;
-            // debug($data);
+            debug($data);
             if($data['thumbnail']['size']>0){
                 $data['thumbnail']=upload_file('img',$data['thumbnail']);
             }else{
@@ -184,6 +185,9 @@ class AdminController {
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $data=$_POST + $_FILES;
             $course=$this->courses->get($_POST['id']);
+            // echo "<pre>";
+            // print_r($data);
+            // debug($course);
             if($data['thumbnail']['size']>0){
                 $data['thumbnail']=upload_file('img',$data['thumbnail']);
             }else{
@@ -242,10 +246,94 @@ class AdminController {
         $view="course/admin/list";
         require_once PATH_VIEW_MAIN;
     }
+    function delete_user(){
+        try {
+            if(!isset($_GET['id'])){
+                throw new Exception("không có id như vậy");
+            }
+            $user=$this->users->get($_GET['id']);
+            if(empty($user)){
+                throw new Exception("không có nguoi như vậy");
+            }
+            $row=$this->users->delete($_GET['id']);
+            if($row > 0){
+                $_SESSION['msg']="đã xóa thành công!!";
+                $_SESSION['status']= true ;               
+            }else{
+                throw new Exception("xoa khong thanh cong");
+            }
+        } catch (\Throwable $th) {
+            $_SESSION['msg']=$th->getMessage();
+            $_SESSION['status']=false;
+        }
+        header("location:".BASE_URL_ADMIN.'&action=user');
+        exit;
+    }
+    function edit_user(){
+        if(isset($_GET['id'])){
+            $data=$this->users->get($_GET['id']);
+            $title='hãy chỉnh sửa khóa học đi, tất cả là vì con em chúng ta, cố lên, cố lên!!!';
+            $view="course/admin/user_edit";
+            require_once PATH_VIEW_MAIN;   
+        }
+    }
+    function update_user(){
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $data = $_POST + $_FILES;
+            $user=$this->users->get($_POST['id']);
+            if($data['avatar_url']['size']>0){
+                $data['avatar_url']=upload_file('user',$data['avatar_url']);
+            }else{
+                $data['avatar_url']=$user['avatar_url'];
+            }
+            $row=$this->users->update($data); 
+            if($row > 0 && file_exists($user['avatar_url'])){
+                unlink($user['avatar_url']);
+            }        
+            header('location:'.BASE_URL_ADMIN.'&action=user');  
+            exit;      
+        }
+    }
+    function show_category(){
+        $data= $this->category->getAll();
+        $title='cuộc đời đôi khi khó khăn, nhưng cũng là một phần của hạnh phúc.';
+        $view="course/admin/category_list"; 
+        require_once PATH_VIEW_MAIN;   
+    }
+    function delete_category(){
+        if(isset($_GET['id'])){
+            $this->category->delete($_GET['id']);
+            header('location:'.BASE_URL_ADMIN.'&action=show_category');
+            exit;
+        }
+    }
+    function create_category(){
+        $title='Hấp tấp không làm nên trò chống gì cả.';
+        $view="course/admin/category_create"; 
+        require_once PATH_VIEW_MAIN;   
 
-    //tôi muốn tạo ra một hàm để in dữ liệu ra ngoài để cho mọi người nhận biết bao gồm
-    //tên người dùng, ảnh đại diện bảng người dùng
-    //nội dung comment in bảng comment, kiểm tra xem đâu là tin nhắn của mình
-    //thêm vào bảng comment, nội dung loại người, 
+    }
+    function add_category(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $this->category->add($_POST);
+        }
+        header('location:'.BASE_URL_ADMIN.'&action=show_category');
+        exit;     
+    }
+    function edit_category(){
+        if(isset($_GET['id'])){
+            $data=$this->category->get($_GET['id']);
+            $title='Có những cố gắng không ai thấy';
+            $view="course/admin/category_edit"; 
+            require_once PATH_VIEW_MAIN;   
+        }
+    }
+    function update_category(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $this->category->update($_POST);
+        }
+        header('location:'.BASE_URL_ADMIN.'&action=show_category');
+        exit;       
+    }
 }
 ?>
