@@ -7,12 +7,14 @@
             <th>định danh</th>
             <th>tên học sinh</th>
             <th>Emails</th>
+            <th>ảnh đại diện</th>
             <th>hành động</th>
         </tr>
             <tr>
                 <td><?=$data['id']?></td>
                 <td><?=$data['username']?></td>
                 <td><?=$data['email']?></td>
+                <td><img src="<?= BASE_ASSETS_UPLOADS.$data['avatar_url']?>" alt="" width="100px"></td>
 
                 <tr>
                     <th style="color:green;">những khóa học đăng ký</th> 

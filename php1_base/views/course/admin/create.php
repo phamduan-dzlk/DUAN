@@ -3,7 +3,7 @@
     <form action="<?=BASE_URL.'?mode=admin&action=add'?>" method="post" enctype="multipart/form-data">
         <p>
             <label for="">name</label>
-            <input type="text" name="name" id="">
+            <input type="text" name="name" id=""class="form-control">
         </p>
         <p>
             <label for="">instructor</label>
@@ -15,11 +15,11 @@
         </p>
         <p>
             <label for="">description</label>
-            <input type="text" name="description" id="">
+            <input type="text" name="description" id=""class="form-control">
         </p>
         <p>
             <label for="">price</label>
-            <input type="number" name="price" id="">
+            <input type="number" name="price" id=""class="form-control">
         </p>
         <p>
             <label for="">lộ trình</label>
@@ -31,12 +31,12 @@
         </p>
         <p>
             <label for="">duration</label>
-            <input type="number" name="duration" id="">
+            <input type="number" name="duration" id=""class="form-control">
         </p>
         <p>
             <label for="">thumbnail</label>
-            <input type="file" name="thumbnail" id="">
+            <input type="file" name="thumbnail" id=""class="form-control">
         </p>
-        <button type="submit" >thêm khóa học</button>
+        <button type="submit" class="btn btn-secondary" >thêm khóa học</button>
     </form>
 </div>

@@ -3,7 +3,7 @@
 <form action="<?=BASE_URL.'?mode=admin&action=update'?>" method="post" enctype="multipart/form-data">
     <p>
         <label for="">name</label>
-        <input type="text" name="name" id="" value="<?=$data['name']?>">
+        <input type="text" name="name" id="" value="<?=$data['name']?>" class="form-control">
     </p>
     <p>
         <label for="">instructor_id</label>
@@ -15,11 +15,11 @@
     </p>
     <p>
         <label for="">description</label>
-        <input type="text" name="description" id="" value="<?=$data['description']?>">
+        <input type="text" name="description" id="" value="<?=$data['description']?>"class="form-control">
     </p>
     <p>
         <label for="">price</label>
-        <input type="number" name="price" id="" value="<?=$data['price']?>">
+        <input type="number" name="price" id="" value="<?=$data['price']?>"class="form-control">
     </p>
     <p>
     <label for="">lộ trình</label>
@@ -31,13 +31,13 @@
     </p>
     <p>
         <label for="">duration</label>
-        <input type="number" name="duration" id="" value="<?=$data['duration']?>">
+        <input type="number" name="duration" id="" value="<?=$data['duration']?>"class="form-control">
     </p>
     <input type="hidden" name="id" id="" value="<?=$data['id']?>">
     <p>
         <label for="">thumbnail</label>
-        <input type="file" name="thumbnail" id="">
+        <input type="file" name="thumbnail" id=""class="form-control">
     </p>
-    <button type="submit">Sửa khóa học</button>
+    <button type="submit" class="btn btn-secondary">Sửa khóa học</button>
 </form>
 </div>

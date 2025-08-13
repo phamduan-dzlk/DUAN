@@ -9,7 +9,7 @@
                     <li><a class="dropdown-item" href="<?=BASE_URL.'?action=category'?>">Ưu đãi</a></li>
 
                     <?php foreach($category as $v){?>
-                        <li><a class="dropdown-item" href="<?=BASE_URL.'?action=category&category='.$V['category_id']?>"><?=$v['categoryName']?></a></li>
+                        <li><a class="dropdown-item" href="<?=BASE_URL.'?action=category&category='.$v['category_id']?>"><?=$v['categoryName']?></a></li>
                     <?php }?>
                 </ul>
             </li>

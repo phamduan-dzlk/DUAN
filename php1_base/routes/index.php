@@ -19,7 +19,6 @@ if(isset($_GET['mode']) && $_GET['mode']=='admin'){
         'search_courses'        =>(new AdminController)->search_courses(),
         'delete_user'       =>(new AdminController)->delete_user(),
         'detail_user'       =>(new AdminController)->detail_user(),
-        'edit_user'       =>(new AdminController)->edit_user(),
         'update_user'       =>(new AdminController)->update_user(),
         'show_category'       =>(new AdminController)->show_category(),
 
@@ -48,5 +47,8 @@ if(isset($_GET['mode']) && $_GET['mode']=='admin'){
         'comment'         => (new HomeController)->comment(),
         'category'         => (new HomeController)->category(),
         'contact'         => (new HomeController)->contact(),
+        
+        
+        'edit_user'         => (new AdminController)->edit_user(),
     };    
 }

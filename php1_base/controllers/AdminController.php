@@ -127,6 +127,7 @@ class AdminController {
             exit;
         }
     }
+    //xáo khóa học
     function delete(){
         try {
             if(!isset($_GET['id'])){
@@ -150,7 +151,7 @@ class AdminController {
         header('location:'.BASE_URL_ADMIN);
         exit;
     }
-
+    //show form thêm khóa học
     function create(){
         $data_cate = $this->category->getAll();   
         $data=$this->instructor->getAll();
@@ -158,10 +159,11 @@ class AdminController {
         $view="course/admin/create";
         require_once PATH_VIEW_MAIN;   
     }
+    //thêm khóa học
     function add(){
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $data=$_POST + $_FILES;
-            debug($data);
+            //debug($data);
             if($data['thumbnail']['size']>0){
                 $data['thumbnail']=upload_file('img',$data['thumbnail']);
             }else{
@@ -171,6 +173,7 @@ class AdminController {
         }
         header('location:'.BASE_URL_ADMIN);
     }
+    // show form sửa khóa học
     function edit(){
         if(isset($_GET['id'])){
             $data_in=$this->instructor->getAll();
@@ -181,6 +184,7 @@ class AdminController {
             require_once PATH_VIEW_MAIN;   
         }
     }
+    //sửa khóa học
     function update(){
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $data=$_POST + $_FILES;
@@ -200,12 +204,15 @@ class AdminController {
         }
         header('location:'.BASE_URL_ADMIN);
     }
+    //người dùng
+    //danh sách người dùng
     function user(){
         $data=$this->users->getAll();
         $title='THƯỢNG ĐẾ ƠI DANH SÁCH KHÓA HỌC Ở ĐÂY!!';
         $view="course/admin/user";
         require_once PATH_VIEW_MAIN;
     }
+    //chi tiết người dùng
     function detail_user(){
         if(isset($_SESSION['user'])){
             if(isset($_GET['id'])){
@@ -223,6 +230,7 @@ class AdminController {
             }
         }
     }
+    //tìm kiếm người dùng
     function search_user(){
         if(isset($_GET['search']) && $_GET['search']!=''){
             $data=$this->users->search($_GET['search']);
@@ -235,6 +243,7 @@ class AdminController {
         $view="course/admin/user";
         require_once PATH_VIEW_MAIN;
     }
+    //tìm kiếm khóa học
     function search_courses(){
         if(isset($_GET['search']) && $_GET['search']!=''){
             $data=$this->courses->search($_GET['search']);
@@ -246,6 +255,7 @@ class AdminController {
         $view="course/admin/list";
         require_once PATH_VIEW_MAIN;
     }
+    //xóa người dùng
     function delete_user(){
         try {
             if(!isset($_GET['id'])){
@@ -269,6 +279,7 @@ class AdminController {
         header("location:".BASE_URL_ADMIN.'&action=user');
         exit;
     }
+    //Show form sửa người dùng
     function edit_user(){
         if(isset($_GET['id'])){
             $data=$this->users->get($_GET['id']);
@@ -277,6 +288,7 @@ class AdminController {
             require_once PATH_VIEW_MAIN;   
         }
     }
+    // sửa người dùng
     function update_user(){
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $data = $_POST + $_FILES;
@@ -290,16 +302,20 @@ class AdminController {
             if($row > 0 && file_exists($user['avatar_url'])){
                 unlink($user['avatar_url']);
             }        
-            header('location:'.BASE_URL_ADMIN.'&action=user');  
+            header('location:'.BASE_URL.'?action=infor');  
             exit;      
         }
     }
+
+    //lộ trình
+    //show danh sách lộ trình
     function show_category(){
         $data= $this->category->getAll();
         $title='cuộc đời đôi khi khó khăn, nhưng cũng là một phần của hạnh phúc.';
         $view="course/admin/category_list"; 
         require_once PATH_VIEW_MAIN;   
     }
+    //xóa khóa học
     function delete_category(){
         if(isset($_GET['id'])){
             $this->category->delete($_GET['id']);
@@ -307,12 +323,14 @@ class AdminController {
             exit;
         }
     }
+    //show form thêm  lộ trình
     function create_category(){
         $title='Hấp tấp không làm nên trò chống gì cả.';
         $view="course/admin/category_create"; 
         require_once PATH_VIEW_MAIN;   
 
     }
+    //thêm lộ trình
     function add_category(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $this->category->add($_POST);
@@ -320,6 +338,7 @@ class AdminController {
         header('location:'.BASE_URL_ADMIN.'&action=show_category');
         exit;     
     }
+    //sửa khóa học
     function edit_category(){
         if(isset($_GET['id'])){
             $data=$this->category->get($_GET['id']);
@@ -328,6 +347,7 @@ class AdminController {
             require_once PATH_VIEW_MAIN;   
         }
     }
+    //show form sửa khóa học
     function update_category(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $this->category->update($_POST);
@@ -335,5 +355,6 @@ class AdminController {
         header('location:'.BASE_URL_ADMIN.'&action=show_category');
         exit;       
     }
+    
 }
 ?>

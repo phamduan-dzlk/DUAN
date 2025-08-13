@@ -24,7 +24,7 @@
             <input type="text" class="form-control me-2" name="search" id="" placeholder="nhập để tìm kiếm...">
             <button type="submit" class="btn btn-outline-primary">🔍</button>
         </form>
-        <table class="table">
+        <table class="table table-hover align-middle shadow-sm rounded">
             <tr>
                 <th>định danh</th>
                 <th>tên khóa học</th>
@@ -38,7 +38,7 @@
                 <th>hành động</th>
             </tr>
             <?php foreach($data as $v){?>
-                <tr>
+                <tr class="table-row-hover">
                     <td><?=$v['id']?></td>
                     <td><?=$v['name']?></td>
                     <td><img src="<?=BASE_ASSETS_UPLOADS.$v['thumbnail']?>" alt="" width="100"></td>
@@ -49,7 +49,7 @@
                     <td><?=$v['duration']?></td>
                     <td><?=$v['create_at']?></td>
                     <td>
-                        <a href="<?=BASE_URL.'?mode=admin&action=detail&id='.$v['id']?>"><button class="btn btn-primary">xem chi tiet</button></a>
+                        <a href="<?=BASE_URL.'?mode=admin&action=detail&id='.$v['id']?>"><button class="btn btn-primary">xem chi tiết</button></a>
                         <a href="<?=BASE_URL.'?mode=admin&action=edit&id='.$v['id']?>"><button class="btn btn-primary">Sửa </button></a>
                         <a href="<?=BASE_URL.'?mode=admin&action=delete&id='.$v['id']?>"><button class="btn btn-primary" onclick=" return(confirm('bạn có muốn xóa không?'))">xóa </button></a>
                     </td>
@@ -67,9 +67,9 @@
         padding: 10px;
         border-right: 1px solid #d2d2d2;
         margin: 10px;
-        width:19%;
+        width:auto;
     }
     .right_content{
-        width: 75%;
+        width: 80%;
     }
 </style>

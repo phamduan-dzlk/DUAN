@@ -88,7 +88,6 @@ class HomeController
         }
     }
     //comment
-    //cái này chưa biết sai ở đâu
     function comment(){
         if(!isset($_SESSION['user'])){
             $_SESSION['msg'] = "bạn cần đăng nhập để bình luận";
@@ -226,23 +225,25 @@ class HomeController
         require_once PATH_VIEW_MAIN;
     }
     function category(){
-        //tiếp theo là đến hàm category
-        //lấy thông tin từ view form
+        $category = $this->courses->getAll_category();
+        // echo "<pre>";
+        // print_r($category);
         if(isset($_GET['category']) && $_GET['category']!=''){
-            //gọi hàm trong model user để xem người dùng tìm cái gì
             $data=$this->courses->category($_GET['category']);
         }else{
             $data = $this->courses->getAll();
+            
         }
         if(!isset($_GET['category'])){
             $title='Danh sách khóa học';      
-        }else if(isset($_GET['category']) && $_GET['category'] == 1){
-            $title='lộ trình khóa học Frond_End';  
-
-        }else{
-            $title='lộ trình khóa học Back_End';              
+        }else {
+            foreach($category as $cate){
+                if($_GET['category'] == $cate['category_id']){
+                    $title='Lộ trình khóa học '.$cate['categoryName']; 
+                    break;
+                }
+            }
         }
-
         $view="course/user/list";
         require_once PATH_VIEW_MAIN;
     }

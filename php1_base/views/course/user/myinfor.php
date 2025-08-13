@@ -6,13 +6,17 @@
         <th>menu</th>
         <th>định danh</th>
         <th>tên hoc sinh</th>
+        <th>email</th>
+        <th>ảnh đại diện</th>
     </tr>
     <tr>
         <th>thông tin cá nhân</th>
         <td><?=$data['id']?></td>
         <td><?=$data['username']?></td>
+        <td><?=$data['email']?></td>
+        <td><img src="<?= BASE_ASSETS_UPLOADS.$data['avatar_url']?>" alt="" width='100px'></td>
     </tr>            
-    <td><a href="<?=BASE_URL.'?action=update'?>"><button class="btn btn-primary">them thông tin của mình</button></a></td>
+    <td><a href="<?=BASE_URL.'?action=edit_user&id='.$data['id']?>"><button class="btn btn-primary">them thông tin của mình</button></a></td>
 </table>
 <table class="table">
     <tr>
@@ -45,4 +49,4 @@
         </tr>
         <?php }?>
 </table>
-<button class="btn btn-primary">thanh toán</button>
+<a href="" class="btn btn-primary">thanh toán</a>

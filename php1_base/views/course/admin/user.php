@@ -37,7 +37,7 @@
                 <td><?=$v['date']?></td>
                 <td>
                     <a href="<?=BASE_URL.'?mode=admin&action=detail_user&id='.$v['id']?>" class="text-info fs-5 me-2"><i class="fa-solid fa-info-circle"></i></a>
-                    <a href="<?=BASE_URL.'?mode=admin&action=edit_user&id='.$v['id']?>" class="text-warning fs-5 me-2"><i class="fa-solid fa-pen"></i></a>
+                    <a href="<?=BASE_URL.'?action=edit_user&id='.$v['id']?>" class="text-warning fs-5 me-2"><i class="fa-solid fa-pen"></i></a>
                     <a href="<?=BASE_URL.'?mode=admin&action=delete_user&id='.$v['id']?>" class="text-danger fs-5" onclick="return confirm('Bạn có muốn xóa không?')"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
