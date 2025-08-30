@@ -53,10 +53,23 @@ class AdminController {
     }
     function index(){
         $category = $this->courses->getAll_category();
-        $data=$this->courses->getAll();
-        $title='THƯỢNG ĐẾ ƠI DANH SÁCH KHÓA HỌC Ở ĐÂY!!';
-        $view="course/admin/list";
-        require_once PATH_VIEW_MAIN;
+        if(empty($_GET['category'])){
+            $data=$this->courses->getAll();
+            $title='THƯỢNG ĐẾ ƠI DANH SÁCH KHÓA HỌC Ở ĐÂY!!';
+            $view="course/admin/list";
+            require_once PATH_VIEW_MAIN;            
+        }else{
+            $data= $this->courses->category($_GET['category']);
+            foreach($category as $v){
+                if($_GET['category'] == $v['category_id']){
+                    $title="THƯỢNG ĐẾ ƠI DANH SÁCH KHÓA HỌC " .$v['categoryName']. " Ở ĐÂY!!";
+                }                
+            }
+
+            $view="course/admin/list";
+            require_once PATH_VIEW_MAIN;       
+        }
+
     }
     function detail(){
         if(isset($_GET['id'])){
@@ -179,6 +192,7 @@ class AdminController {
             $data_in=$this->instructor->getAll();
             $data_cate = $this->category->getAll();
             $data=$this->courses->get($_GET['id']);
+            $comment = $this->comment->get_comment($_GET['id']);
             $title='hãy chỉnh sửa khóa học đi, tất cả là vì con em chúng ta, cố lên, cố lên!!!';
             $view="course/admin/edit";
             require_once PATH_VIEW_MAIN;   
@@ -355,6 +369,5 @@ class AdminController {
         header('location:'.BASE_URL_ADMIN.'&action=show_category');
         exit;       
     }
-    
 }
 ?>

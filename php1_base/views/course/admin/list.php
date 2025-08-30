@@ -9,9 +9,9 @@
                     <i class="fa-solid fa-road"><br></i>  lộ trình
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="<?=BASE_URL.'?mode=adminaction=category'?>">Ưu đãi</a></li>
+                    <li><a class="dropdown-item" href="<?=BASE_URL_ADMIN?>">Ưu đãi</a></li>
                     <?php foreach($category as $v){?>
-                        <li><a class="dropdown-item" href="<?=BASE_URL.'?action=category&category='.$V['category_id']?>"><?=$v['categoryName']?></a></li>
+                        <li><a class="dropdown-item" href="<?=BASE_URL_ADMIN.'&action=category&category='.$v['category_id']?>"><?=$v['categoryName']?></a></li>
                     <?php }?>                    
                 </ul>
             </li>
@@ -49,9 +49,9 @@
                     <td><?=$v['duration']?></td>
                     <td><?=$v['create_at']?></td>
                     <td>
-                        <a href="<?=BASE_URL.'?mode=admin&action=detail&id='.$v['id']?>"><button class="btn btn-primary">xem chi tiết</button></a>
-                        <a href="<?=BASE_URL.'?mode=admin&action=edit&id='.$v['id']?>"><button class="btn btn-primary">Sửa </button></a>
-                        <a href="<?=BASE_URL.'?mode=admin&action=delete&id='.$v['id']?>"><button class="btn btn-primary" onclick=" return(confirm('bạn có muốn xóa không?'))">xóa </button></a>
+                        <a href="<?=BASE_URL.'?mode=admin&action=detail&id='.$v['id']?>"><button class="btn btn-primary">chi tiết</button></a>
+                        <a href="<?=BASE_URL.'?mode=admin&action=edit&id='.$v['id']?>"><button class="btn btn-warning">Sửa </button></a>
+                        <a href="<?=BASE_URL.'?mode=admin&action=delete&id='.$v['id']?>"><button class="btn btn-danger" onclick=" return(confirm('bạn có muốn xóa không?'))">xóa </button></a>
                     </td>
                 </tr>
             <?php }?>

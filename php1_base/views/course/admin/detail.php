@@ -17,7 +17,7 @@ if(isset($_GET['id'])){
             <th>thông tin</th>
             <th>giá</th>
             <th>Thuộc lộ trình</th>
-            <th>thời hạn</th>
+            <th>thời hạn/tháng</th>
             <th>hành động</th>
         </tr>
             <tr>
@@ -30,9 +30,8 @@ if(isset($_GET['id'])){
                 <td><?=$data['categoryName']?></td>
                 <td><?=$data['duration']?></td>
                 <td>
-                    <a href="<?=BASE_URL.'?mode=admin&action=detail&id='.$data['id']?>"><button class="btn btn-primary">xem chi tiet</button></a>
-                    <a href="<?=BASE_URL.'?mode=admin&action=edit&id='.$data['id']?>"><button class="btn btn-primary">Sửa </button></a>
-                    <a href="<?=BASE_URL.'?mode=admin&action=delete&id='.$data['id']?>"><button class="btn btn-primary" onclick=" return(confirm('bạn có muốn xóa không?'))">xóa </button></a>
+                    <a href="<?=BASE_URL.'?mode=admin&action=edit&id='.$data['id']?>"><button class="btn btn-warning">Sửa </button></a>
+                    <a href="<?=BASE_URL.'?mode=admin&action=delete&id='.$data['id']?>"><button class="btn btn-danger" onclick=" return(confirm('bạn có muốn xóa không?'))">xóa </button></a>
                 </td>
             </tr>
     </table>

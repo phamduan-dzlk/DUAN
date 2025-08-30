@@ -20,6 +20,7 @@ class HomeController
 
         $this->comment = new Comment();
     }
+    // hiển thị danh sách khóa học
     public function index() 
     {
         $category = $this->courses->getAll_category();
@@ -31,6 +32,7 @@ class HomeController
         $view="course/user/list";
         require_once PATH_VIEW_MAIN;
     }
+    //chi tiết khóa học
     public function detail() 
     {
         if(isset($_GET['id'])){
@@ -87,7 +89,7 @@ class HomeController
             require_once PATH_VIEW_MAIN;
         }
     }
-    //comment
+    //comment khóa học
     function comment(){
         if(!isset($_SESSION['user'])){
             $_SESSION['msg'] = "bạn cần đăng nhập để bình luận";
@@ -100,7 +102,7 @@ class HomeController
                 $course_id = $_POST['course_id'] ?? null;
                 $commenter_type = $_POST['commenter_type'] ?? null;
                 $content = $_POST['content'] ?? null;
-                $commenter_id = $_SESSION['id_user'] ?? null; // lấy từ session an toàn hơn
+                $commenter_id = $_SESSION['id_user'] ?? null; 
 
                 // Kiểm tra dữ liệu
                 if ($course_id && $commenter_type && $content && $commenter_id) {
@@ -115,7 +117,7 @@ class HomeController
                     $_SESSION['msg'] = "Bình luận của bạn đã được gửi.";
                     $_SESSION['status'] = true;
                 } else {
-                    $_SESSION['msg'] = "Thiếu thông tin bình luận.";
+                    $_SESSION['msg'] = "Bạn phải đăng nhập để bình luận";
                     $_SESSION['status'] = false;
                 }          
             }
@@ -127,7 +129,7 @@ class HomeController
     //tên người dùng, ảnh đại diện bảng người dùng
     //nội dung comment in bảng comment, kiểm tra xem đâu là tin nhắn của mình
     //thêm vào bảng comment, nội dung loại người, 
-
+    //ANG KÝ khóa học
     function takecourse(){
         $data = $this->courses->getAll();
         if(!empty($_SESSION['user'])){
@@ -156,18 +158,21 @@ class HomeController
         $view="course/user/list";
         require_once PATH_VIEW_MAIN;             
     }
+    //SHOW FORM ĐĂNNG KÝ
     public function register() 
     {
         $title='Đăng Ký';
         $view="course/user/register";
         require_once PATH_VIEW_MAIN;
     }
+    //SHOW FORM ĐĂNG NHẬP
     public function login() 
     {
         $title='Đăng Nhập';
         $view="course/user/login";
         require_once PATH_VIEW_MAIN;
     }
+    //Dăng ký 
     function add(){
         if($_SERVER['REQUEST_METHOD']=="POST"){
 
@@ -187,6 +192,7 @@ class HomeController
             }
         }
     }
+    // Đăng nhập
     function check_user(){
         if($_SERVER['REQUEST_METHOD']=="POST"){
             $data_in=$this->users->check($_POST['username'],$_POST['password']);
@@ -210,7 +216,7 @@ class HomeController
             }
         }
     }
-
+    //Tìm kiếm
     function search(){
         //tiếp theo là đến hàm search
         //lấy thông tin từ view form
@@ -224,10 +230,9 @@ class HomeController
         $view="course/user/list";
         require_once PATH_VIEW_MAIN;
     }
+    //danh mục
     function category(){
         $category = $this->courses->getAll_category();
-        // echo "<pre>";
-        // print_r($category);
         if(isset($_GET['category']) && $_GET['category']!=''){
             $data=$this->courses->category($_GET['category']);
         }else{
@@ -247,6 +252,7 @@ class HomeController
         $view="course/user/list";
         require_once PATH_VIEW_MAIN;
     }
+    //Hồ sơ
     function infor(){
         if(isset($_SESSION['user'])){
             $data=$this->users->get($_SESSION['id_user']);
@@ -263,20 +269,20 @@ class HomeController
             require_once PATH_VIEW_MAIN;
         }
     }
-    function update(){
-        //them email, dia chi
-    }
+    // xóa khóa học
     function delete(){
         if(isset($_GET['id'])){
             $this->courses_registration->delete($_GET['id']);            
         }
         header('location:'.BASE_URL.'?action=infor');
     }
+    // SHOW trang liên hệ
     function contact(){
         $title='liên hệ đến chúng TÔI';
         $view="course/user/contact";
         require_once PATH_VIEW_MAIN;
     }
+    // đăng xuất
     function logout(){
         $_SESSION = [];
         session_destroy();
@@ -284,3 +290,4 @@ class HomeController
         exit;
     }
 }
+?>

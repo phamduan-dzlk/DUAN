@@ -13,6 +13,7 @@ if(isset($_GET['mode']) && $_GET['mode']=='admin'){
         'add'       =>(new AdminController)->add(),
         'update'        =>(new AdminController)->update(),
         'comment'       =>(new AdminController)->comment(),
+        'category'       =>(new AdminController)->index(),
 
         'user'      =>(new AdminController)->user(),
         'search_user'       =>(new AdminController)->search_user(),
@@ -41,7 +42,6 @@ if(isset($_GET['mode']) && $_GET['mode']=='admin'){
         'check'         => (new HomeController)->check_user(),
         'search'         => (new HomeController)->search(),
         'infor'         => (new HomeController)->infor(),
-        'update'         => (new HomeController)->update(),
         'delete'         => (new HomeController)->delete(),
         'logout'         => (new HomeController)->logout(),
         'comment'         => (new HomeController)->comment(),

@@ -4,18 +4,16 @@ class Course_registration extends BaseModel{
         //mấy dòng dài dài này chỉ đơn giản là hiện tất cả thông tin của bảng khóa học
         $sql="SELECT course_registration.*, courses.id AS coursesId, courses.name AS coursesName, courses.thumbnail AS coursesImg, courses.instructor_id AS coursesIn, courses.description AS coursesDes, courses.price, courses.duration as coursesDura,
         instructor.name AS instructorName,
-         category.name AS courses_categoryName
+        category.name AS courses_categoryName
         FROM course_registration
         LEFT JOIN courses
         ON course_registration.course_id = courses.id
         LEFT JOIN instructor
-        ON course_registration.course_id = instructor.id
+        ON courses.instructor_id = instructor.id
         LEFT JOIN category
         ON courses.category_id = category.id
         WHERE course_registration.user_id=:id";
-        //niềm tự hào của tôi vấn đề ở đây là tôi không tham chiếu đến bảng nhưng tôi nhận ra có thể left join được 
-        //và tôi nhận ra tham chiếu chỉ là sử dụng thông tin của bảng còn, join tức là bảng này tham gia với bảng kia để so sánh
-        //tôi hiểu được là vì tôi xem lại code
+
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':id'=>$id]);
         $instructor= $stmt->fetchAll();

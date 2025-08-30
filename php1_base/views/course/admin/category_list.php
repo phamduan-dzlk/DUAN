@@ -1,5 +1,6 @@
 <div class="container mt-5">
     <h1 class="mb-4 text-center">Quản Lý Danh Mục</h1>
+
     <?php
     if(isset($_SESSION["msg"])){
         $alertClass = $_SESSION["status"] ? "alert-success" : "alert-danger";
@@ -11,7 +12,7 @@
         unset($_SESSION["status"]);
     }
     ?>
-
+    <a href="<?=BASE_URL_ADMIN?>" class="btn btn-secondary mb-3">← Trở lại</a><br><br>
     <a href="<?=BASE_URL_ADMIN.'&action=create_category'?>" class="btn btn-primary mb-3">
         <i class="bi bi-plus-circle"></i> Thêm danh mục
     </a>
@@ -38,7 +39,4 @@
         </table>
     </div>
 
-    <div class="text-center mt-3">
-        <a href="<?=BASE_URL_ADMIN?>" class="btn btn-secondary">Quay lại Trang Chủ</a>
-    </div>
 </div>

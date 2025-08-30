@@ -25,9 +25,9 @@
             <!-- chuyển đến controller -->
         </form>
         <!--  -->
-            <div class="row">
+        <div class="row">
             <?php foreach($dataAll ?? $data as $v){?>
-                <div class="col-md-4 mb-4" style="flex-wrap: wrap;">
+                <div class="col-6 col-md-3 mb-4 p-3" style="flex-wrap: wrap;">
                     <div class="card ">
                         <div class="img" >
                             <a href="<?=BASE_URL.'?action=detail&id='.$v['id']?>">
@@ -51,6 +51,10 @@
 
 
 <style>
+
+.cart{
+    width: 23% !important;
+}
 .img {
     width: 100%;
     height: 200px;
@@ -75,8 +79,8 @@
 }
 
 .content_left {
-    flex: 0 0 19%;
-    width: 19%;
+    
+    width: 14%;
     border-right:1px solid #d2d2d2;
 }
 .content_left ul{

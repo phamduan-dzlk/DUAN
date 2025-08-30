@@ -19,7 +19,7 @@ if(isset($_GET['id'])){
                 <th>Thông tin</th>
                 <th>Giá</th>
                 <th>Thuộc lộ trình</th>
-                <th>thời hạn</th>
+                <th>thời hạn/tháng</th>
                 <th>Thao tác</th>
             </tr>
         </thead>
@@ -54,7 +54,7 @@ if(isset($_GET['id'])){
                     <p class="mb-1"><strong>Giảng viên:</strong> <?=$data['instructorName']?></p>
                     <p class="mb-1"><strong>Giá:</strong> <?= number_format($data['price'], 0, ',', '.') ?> đ</p>
                     <p class="mb-1"><strong>lộ trình</strong> <?= $data['categoryName'] ?></p>
-                    <p class="mb-1"><strong>thời hạn</strong> <?= $data['duration'] ?></p>
+                    <p class="mb-1"><strong>thời hạn/tháng</strong> <?= $data['duration'] ?></p>
                     <p class="mb-2"><strong>Thông tin:</strong> <?= $data['description'] ?></p>
                     <a href="<?= BASE_URL . '?action=takecourse&id=' . $data['id'] ?>" class="btn btn-primary btn-sm">
                         Đăng ký khóa học
