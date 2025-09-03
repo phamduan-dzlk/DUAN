@@ -55,14 +55,14 @@ class AdminController {
         $category = $this->courses->getAll_category();
         if(empty($_GET['category'])){
             $data=$this->courses->getAll();
-            $title='THƯỢNG ĐẾ ƠI DANH SÁCH KHÓA HỌC Ở ĐÂY!!';
+            $title='THƯỢNG ĐẾ ƠI, DANH SÁCH KHÓA HỌC Ở ĐÂY!!';
             $view="course/admin/list";
             require_once PATH_VIEW_MAIN;            
         }else{
             $data= $this->courses->category($_GET['category']);
             foreach($category as $v){
                 if($_GET['category'] == $v['category_id']){
-                    $title="THƯỢNG ĐẾ ƠI DANH SÁCH KHÓA HỌC " .$v['categoryName']. " Ở ĐÂY!!";
+                    $title="THƯỢNG ĐẾ ƠI, DANH SÁCH KHÓA HỌC " .$v['categoryName']. " Ở ĐÂY!!";
                 }                
             }
 
@@ -140,7 +140,7 @@ class AdminController {
             exit;
         }
     }
-    //xáo khóa học
+    //xóa khóa học
     function delete(){
         try {
             if(!isset($_GET['id'])){
@@ -168,7 +168,7 @@ class AdminController {
     function create(){
         $data_cate = $this->category->getAll();   
         $data=$this->instructor->getAll();
-        $title='hãy thêm khóa học đi, cố lên, cố lên!!!';
+        $title='Hãy thêm khóa học đi, cố lên, cố lên!!!';
         $view="course/admin/create";
         require_once PATH_VIEW_MAIN;   
     }
@@ -193,7 +193,7 @@ class AdminController {
             $data_cate = $this->category->getAll();
             $data=$this->courses->get($_GET['id']);
             $comment = $this->comment->get_comment($_GET['id']);
-            $title='hãy chỉnh sửa khóa học đi, tất cả là vì con em chúng ta, cố lên, cố lên!!!';
+            $title='Hãy chỉnh sửa khóa học đi, tất cả là vì con em chúng ta, cố lên, cố lên!!!';
             $view="course/admin/edit";
             require_once PATH_VIEW_MAIN;   
         }
@@ -218,11 +218,23 @@ class AdminController {
         }
         header('location:'.BASE_URL_ADMIN);
     }
+    //tìm kiếm khóa học
+    function search_courses(){
+        if(isset($_GET['search']) && $_GET['search']!=''){
+            $data=$this->courses->search($_GET['search']);
+
+        }else{
+            $data = $this->courses->getAll();
+        }
+        $title='Danh sách khóa học';
+        $view="course/admin/list";
+        require_once PATH_VIEW_MAIN;
+    }
     //người dùng
     //danh sách người dùng
     function user(){
         $data=$this->users->getAll();
-        $title='THƯỢNG ĐẾ ƠI DANH SÁCH KHÓA HỌC Ở ĐÂY!!';
+        $title='THƯỢNG ĐẾ ƠI, Danh sách người dùng Ở ĐÂY!!';
         $view="course/admin/user";
         require_once PATH_VIEW_MAIN;
     }
@@ -238,7 +250,7 @@ class AdminController {
                 // echo "duan";
                 // print_r($data);
 
-                $title='hồ sơ người dùng';
+                $title='Hồ sơ người dùng';
                 $view="course/admin/user_detail";
                 require_once PATH_VIEW_MAIN;
             }
@@ -253,22 +265,11 @@ class AdminController {
             $data = $this->users->getAll();
                 
         }
-        $title='Danh sách khóa học';
+        $title='Danh sách người dùng';
         $view="course/admin/user";
         require_once PATH_VIEW_MAIN;
     }
-    //tìm kiếm khóa học
-    function search_courses(){
-        if(isset($_GET['search']) && $_GET['search']!=''){
-            $data=$this->courses->search($_GET['search']);
 
-        }else{
-            $data = $this->courses->getAll();
-        }
-        $title='Danh sách khóa học';
-        $view="course/admin/list";
-        require_once PATH_VIEW_MAIN;
-    }
     //xóa người dùng
     function delete_user(){
         try {
@@ -325,7 +326,7 @@ class AdminController {
     //show danh sách lộ trình
     function show_category(){
         $data= $this->category->getAll();
-        $title='cuộc đời đôi khi khó khăn, nhưng cũng là một phần của hạnh phúc.';
+        $title='Cuộc đời đôi khi khó khăn, nhưng cũng là một phần của hạnh phúc.';
         $view="course/admin/category_list"; 
         require_once PATH_VIEW_MAIN;   
     }
@@ -337,7 +338,7 @@ class AdminController {
             exit;
         }
     }
-    //show form thêm  lộ trình
+    //show form thêm lộ trình
     function create_category(){
         $title='Hấp tấp không làm nên trò chống gì cả.';
         $view="course/admin/category_create"; 
@@ -352,6 +353,14 @@ class AdminController {
         header('location:'.BASE_URL_ADMIN.'&action=show_category');
         exit;     
     }
+    //show form sửa khóa học
+    function update_category(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $this->category->update($_POST);
+        }
+        header('location:'.BASE_URL_ADMIN.'&action=show_category');
+        exit;       
+    }
     //sửa khóa học
     function edit_category(){
         if(isset($_GET['id'])){
@@ -360,14 +369,6 @@ class AdminController {
             $view="course/admin/category_edit"; 
             require_once PATH_VIEW_MAIN;   
         }
-    }
-    //show form sửa khóa học
-    function update_category(){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $this->category->update($_POST);
-        }
-        header('location:'.BASE_URL_ADMIN.'&action=show_category');
-        exit;       
     }
 }
 ?>

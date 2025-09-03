@@ -1,5 +1,6 @@
 <div class="container">
   <a href="<?=BASE_URL?>"class="btn btn-secondary mb-3">← Trở lại</a>
+  <h3 class="content_right-title"><?=$title ?? ''?></h3>
   <?php if (isset($message)) echo $message; ?>
   <form action="<?=BASE_URL.'?mode=admin&action=check'?>" method="post">
     <div  class="mb-3">

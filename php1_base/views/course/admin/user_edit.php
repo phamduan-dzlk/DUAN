@@ -1,3 +1,4 @@
+<h3 class="content_right-title"><?=$title ?? ''?></h3>
 <form action="<?=BASE_URL_ADMIN.'&action=update_user'?>" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">username</label>

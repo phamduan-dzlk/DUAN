@@ -3,6 +3,7 @@
         <i class="fa-solid fa-arrow-left"></i> Trở lại
     </a>
     <div class="row justify-content-center">
+        <h3 class="content_right-title"><?=$title ?? ''?></h3>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">

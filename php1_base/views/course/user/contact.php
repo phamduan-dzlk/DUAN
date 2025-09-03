@@ -2,6 +2,7 @@
     <a href="<?=BASE_URL?>" class="btn btn-secondary mb-3">← Trở lại</a>
     <!-- NỘI DUNG LIÊN HỆ -->
 <div class="container my-5">
+    <h3 class="content_right-title"><?=$title ?? ''?></h3>
     <div class="row g-4">
         <!-- Form liên hệ -->
         <div class="col-lg-6">

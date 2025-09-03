@@ -1,6 +1,6 @@
 <?php if (isset($message)) echo $message; ?>
   <a href="<?=BASE_URL?>" class="btn btn-secondary mb-3">← Trở lại</a>
-
+    <h3 class="content_right-title"><?=$title ?? ''?></h3>
 <form action="<?=BASE_URL.'?action=add'?>" method="post" onsubmit="return kiemloiform(event)">
   <div class="mb-3">
     <label for="" class="form-label">Username</label>

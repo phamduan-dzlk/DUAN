@@ -3,6 +3,7 @@
         <i class="fa-solid fa-arrow-left"></i> Trở lại
     </a>
     <h2 class="mb-4 text-center">Chỉnh Sửa Khóa Học</h2>
+    <h3 class="content_right-title"><?=$title ?? ''?></h3>
     <form action="<?=BASE_URL.'?mode=admin&action=update'?>" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?=$data['id']?>">
 

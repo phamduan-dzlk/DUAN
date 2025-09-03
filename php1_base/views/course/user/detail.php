@@ -8,7 +8,7 @@ if(isset($_GET['id'])){
 ?>
 <div class="container my-4">
     <a href="<?=BASE_URL?>" class="btn btn-secondary mb-3">← Trở lại</a>
-
+    <h3 class="content_right-title"><?=$title ?? ''?></h3>
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>

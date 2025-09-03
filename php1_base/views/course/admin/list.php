@@ -17,13 +17,15 @@
             </li>
         </ul>
     </div>
-    <div class="right_content">
-                <form action="" class="d-flex my-3" method="get" >
+    <div class="content_right">
+        <div class="content_right--slide_show"></div>
+        <form action="" class="d-flex my-3" method="get" >
             <input type="hidden" name="mode" value="admin" id="">
             <input type="hidden"  name="action" value="search_courses" id="">
             <input type="text" class="form-control me-2" name="search" id="" placeholder="nhập để tìm kiếm...">
             <button type="submit" class="btn btn-outline-primary">🔍</button>
         </form>
+        <h3 class="content_right-title"><?=$title ?? ''?></h3>
         <table class="table table-hover align-middle shadow-sm rounded">
             <tr>
                 <th>định danh</th>
@@ -62,14 +64,15 @@
 <style>
     .container_content{
         display: flex;
+        flex-wrap: wrap;
     }
     .left_menu{
         padding: 10px;
-        border-right: 1px solid #d2d2d2;
-        margin: 10px;
         width:auto;
+        background-color: #e8e5e5;
     }
-    .right_content{
-        width: 80%;
+    .content_right{
+        flex: 1;
+        padding: 10px;
     }
 </style>

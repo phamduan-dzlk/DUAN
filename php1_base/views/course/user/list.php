@@ -1,5 +1,5 @@
 <hr><div class="content">
-    <div class="content_left" style="position: sticky; position:-webkit-sticky; top: 65px; height: 100vh; align-self: flex-start; ">
+    <div class="content_left " style="position: sticky; position:-webkit-sticky; top: 65px; height: 100vh; align-self: flex-start; ">
         <ul class="navbar-nav" >
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -18,13 +18,14 @@
     </div>
     <div class="content_right">
         <form class="d-flex my-3" action="" method="get" >
-            <!-- đây gửi đi điều muốn tìm kiếm kèm theo một pót ẩn mang giá trị là action để chuyển hướng -->
+            <!-- đây gửi đi điều muốn tìm kiếm kèm theo một post ẩn mang giá trị là action để chuyển hướng -->
             <input type="hidden" name="action" value="search" id="">
             <input class="form-control me-2" type="text" name="search" id="" placeholder="nhập để tìm kiếm...">
             <button class="btn btn-outline-primary" type="submit">🔍</button>
             <!-- chuyển đến controller -->
         </form>
         <!--  -->
+        <h3 class="content_right-title"><?=$title ?? ''?></h3>
         <div class="row">
             <?php foreach($dataAll ?? $data as $v){?>
                 <div class="col-6 col-md-3 mb-4 p-3" style="flex-wrap: wrap;">
@@ -80,7 +81,7 @@
 
 .content_left {
     
-    width: 14%;
+    width: 16.6667%;
     border-right:1px solid #d2d2d2;
 }
 .content_left ul{
@@ -88,7 +89,7 @@
 }
 .content_right {
     flex: 1;
-    width: 80%;
+    width: 83.3333%;
 }
 
 /* Responsive */

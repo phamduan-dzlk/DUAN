@@ -31,7 +31,7 @@
           </li>
             <?php if(isset($_GET['mode']) && $_GET['mode'] == 'admin'){?>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="<?= BASE_URL.'?mode=admin&action=register' ?>" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">quản lý trang web</a>
+                <a class="nav-link dropdown-toggle" href="<?= BASE_URL.'?mode=admin&action=register' ?>" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">QUẢN LÝ TRANG WEB</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" href="<?=BASE_URL.'?mode=admin&action=user'?>">Quản lý người dùng</a></li><hr>
                       <li><a class="dropdown-item" href="<?=BASE_URL.'?mode=admin&action=create'?>">Thêm khóa học</a></li><hr>
@@ -40,7 +40,7 @@
               </li>      
             <?php }else{?>      
               <li class="nav-item">
-                <a class="nav-link text-uppercase" href="<?= BASE_URL.'?mode=admin&action=register' ?>">quản lý trang web</a>
+                <a class="nav-link text-uppercase" href="<?= BASE_URL.'?mode=admin&action=register' ?>">QUẢN LÝ TRANG WEB</a>
               </li>
             <?php }?>
         </ul>

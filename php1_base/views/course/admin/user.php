@@ -13,7 +13,7 @@
         <input type="text" class="form-control me-2 shadow-sm border-primary" name="search" placeholder=" Nhập để tìm kiếm...">
         <button type="submit" class="btn btn-primary btn-glow">🔍</button>
     </form>
-
+    <h3 class="content_right-title"><?=$title ?? ''?></h3>
     <table class="table table-hover align-middle shadow-sm rounded">
         <thead class="table-primary">
             <tr>

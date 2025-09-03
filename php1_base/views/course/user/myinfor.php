@@ -2,7 +2,7 @@
 .<div class="container my-4">
 
     <a href="<?=BASE_URL?>" class="btn btn-secondary mb-3">← Trở lại</a>
-    
+    <h3 class="content_right-title"><?=$title ?? ''?></h3>
     <table class="table">
         <tr>
             <th>menu</th>
@@ -79,7 +79,8 @@
             padding: 8px 30px;
         }
         .help_user-delete_all {
-            
+            color: orangered;
+            cursor: pointer;
         }
         .help_user-tutol_courses {
             display: flex;

@@ -13,6 +13,7 @@
     }
     ?>
     <a href="<?=BASE_URL_ADMIN?>" class="btn btn-secondary mb-3">← Trở lại</a><br><br>
+    <h3 class="content_right-title"><?=$title ?? ''?></h3>
     <a href="<?=BASE_URL_ADMIN.'&action=create_category'?>" class="btn btn-primary mb-3">
         <i class="bi bi-plus-circle"></i> Thêm danh mục
     </a>

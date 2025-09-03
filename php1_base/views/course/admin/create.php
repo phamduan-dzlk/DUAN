@@ -3,6 +3,7 @@
         <i class="fa-solid fa-arrow-left"></i> Trở lại
     </a>
     <h2 class="mb-4 text-center">Thêm Khóa Học Mới</h2>
+    <h3 class="content_right-title"><?=$title ?? ''?></h3>
     <form action="<?=BASE_URL.'?mode=admin&action=add'?>" method="post" enctype="multipart/form-data">
 
         <div class="mb-3">

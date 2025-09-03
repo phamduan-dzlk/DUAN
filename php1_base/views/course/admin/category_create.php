@@ -2,6 +2,7 @@
     <a href="<?=BASE_URL_ADMIN.'&action=show_category'?>" class="btn btn-secondary mb-3">
         <i class="fa-solid fa-arrow-left"></i> Trở lại
     </a>
+    <h3 class="content_right-title"><?=$title ?? ''?></h3>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
