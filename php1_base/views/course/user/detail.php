@@ -66,35 +66,7 @@ if(isset($_GET['id'])){
 <!-- binh luan -->
     <div class="mt-5 p-2" style="background-color: #d5d5d5;">
         <h5 class="mb-3">Bình luận</h5>
-            <?php foreach($data_comment as $v){  ?>
-                <?php if($v['isMine']){ ?>
-                    <div class="d-flex justify-content-end mb-2">
-                        <div class="d-flex flex-row-reverse align-items-start border rounded p-2 bg-light" style="max-width: 75%; background-color: #a9a9f5 !important;">
-                            <img src="<?= BASE_ASSETS_UPLOADS . $v['avatar_url'] ?>" alt="avatar" class="rounded-circle ms-3" width="50" height="50">
-                            <div>
-                                <div class="<?= $v['commenter_type'] == 'user' ? 'text-muted fst-italic' : 'fw-bold fst-italic text-primary' ?>">
-                                    <?= $v['username'] . ':' ?>
-                                </div>
-                                <div ><?= $v['content'] ?></div>
-                            </div>
-                        </div>
-                    </div>
-                <?php } else { ?>
-                    <div class="d-flex justify-content-start mb-2">
-                        <div class="d-flex align-items-start border rounded p-2 bg-light" style="max-width: 75%;">
-                            <img src="<?= BASE_ASSETS_UPLOADS . $v['avatar_url'] ?>" alt="avatar" class="rounded-circle me-3" width="50" height="50">
-                            <div>
-                                <div class="<?= $v['commenter_type'] == 'user' ? 'text-muted fst-italic' : 'fw-bold fst-italic text-primary' ?>">
-                                    <?= $v['username'] . ':' ?>
-                                </div>
-                                <span><?= $v['content'] ?></span>
-                            </div>
-                        </div>
-                    </div>
-                <?php } ?>
-
-            <?php }?>
-            <!-- them comment -->
+        <!-- thêm comment -->
         <form action="<?= BASE_URL.'?action=comment'?>" method="post" class="mt-4">
             <div class="mb-3">
                 <label for="binhluan" class="form-label">Nhập cảm xúc của bạn:</label>
@@ -105,7 +77,37 @@ if(isset($_GET['id'])){
             </div>
             <button type="submit" class="btn btn-success">Gửi</button>
             <!-- neu khoong dang nhap thi khong duowng binh binh luan -->
-        </form>
+        </form>        
+        <!-- danh sách bình luận -->
+        <?php foreach($data_comment as $v){  ?>
+            <?php if($v['isMine']){ ?>
+                <div class="d-flex justify-content-end mb-2">
+                    <!-- bình luận của mình -->
+                    <div class="d-flex flex-row-reverse align-items-start border rounded p-2 bg-light" style="max-width: 75%; background-color: #a9a9f5 !important;">
+                        <img src="<?= BASE_ASSETS_UPLOADS . $v['avatar_url'] ?>" alt="avatar" class="rounded-circle ms-3" width="50" height="50">
+                        <div>
+                            <div class="<?= $v['commenter_type'] == 'user' ? 'text-muted fst-italic' : 'fw-bold fst-italic text-primary' ?>">
+                                <?= $v['username'] . ':' ?>
+                            </div>
+                            <div ><?= $v['content'] ?></div>
+                        </div>
+                    </div>
+                </div>
+            <?php } else { ?>
+                <div class="d-flex justify-content-start mb-2">
+                    <!-- bình luận của người ta -->
+                    <div class="d-flex align-items-start border rounded p-2 bg-light" style="max-width: 75%;">
+                        <img src="<?= BASE_ASSETS_UPLOADS . $v['avatar_url'] ?>" alt="avatar" class="rounded-circle me-3" width="50" height="50">
+                        <div>
+                            <div class="<?= $v['commenter_type'] == 'user' ? 'text-muted fst-italic' : 'fw-bold fst-italic text-primary' ?>">
+                                <?= $v['username'] . ':' ?>
+                            </div>
+                            <span><?= $v['content'] ?></span>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        <?php }?>
     </div>
 </div>
 

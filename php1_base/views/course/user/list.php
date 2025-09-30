@@ -1,10 +1,11 @@
-<hr><div class="content">
+<div class="content">
     <div class="content_left " style="position: sticky; position:-webkit-sticky; top: 65px; height: 100vh; align-self: flex-start; ">
         <ul class="navbar-nav" >
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-road"><br></i>  lộ trình
+                    <i class="fa-solid fa-road"></i>  Lộ trình
                 </a>
+
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="<?=BASE_URL.'?action=category'?>">Ưu đãi</a></li>
 
@@ -12,6 +13,11 @@
                         <li><a class="dropdown-item" href="<?=BASE_URL.'?action=category&category='.$v['category_id']?>"><?=$v['categoryName']?></a></li>
                     <?php }?>
                 </ul>
+            </li>
+            <li>
+                <a class="nav-link" href="<?=BASE_URL.'?action=show_article_list'?>" >
+                    <i class="fa-solid fa-newspaper"></i>  Bài viết
+                </a>
             </li>
         </ul>
     
@@ -29,20 +35,34 @@
         <div class="row">
             <?php foreach($dataAll ?? $data as $v){?>
                 <div class="col-6 col-md-3 mb-4 p-3" style="flex-wrap: wrap;">
-                    <div class="card ">
-                        <div class="img" >
-                            <a href="<?=BASE_URL.'?action=detail&id='.$v['id']?>">
+                    <div class="card">
+                        <a class="items-link" href="<?=BASE_URL.'?action=detail&id='.$v['id']?>">
+                            <div class="img" >
                                 <img src="<?=BASE_ASSETS_UPLOADS .$v['thumbnail']?>" class="card-img-bottom text-center" alt="Hình sản phẩm">
-                            </a>                    
+                                
+                            </div>
+                            <div class=" text-left">
+                                <h5 class="card-title"><?=$v['name']?></h5>
+                                <p class="card-text">giảng viên: <?=$v['instructorName']?></p>
+                                <p class="card-text text-danger fw-bold"><?=number_format($v['price'])?>₫</p>
+                            </div>
+                        </a>
+                        <div class=" text-left">
+                            <div class="home_product-item_action">
+                                <span class="home_product-item_like">
+                                    <i class="home_product-item_like-empty fa-regular fa-heart" ></i>
+                                    <i class="home_product-item_like-fill fa-solid fa-heart" ></i>
+                                </span>
+                                <span class="home_product-item_rating">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </div>
                         </div>
-                        <div class="card-body text-center">
-                            <h5 class="card-title"><?=$v['name']?></h5>
-                            <p class="card-text">giảng viên: <?=$v['instructorName']?></p>
-                            <p class="card-text text-danger fw-bold"><?=number_format($v['price'])?>₫</p>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="<?=BASE_URL.'?action=takecourse&id='.$v['id']?>"><button class="btn btn-primary">đăng ký khóa học</button></a>
-                        </div>
+                            
                     </div>
                 </div>
             <?php }?>
@@ -50,11 +70,19 @@
     </div>    
 </div>
 
-
 <style>
+.items-link{
+    color:#333;
+    text-decoration: none;
+}
+.card{
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.card:hover{
+    transform: translateY(-2px);
+    transition: transform ease-in 0.1s;
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1);
 
-.cart{
-    width: 23% !important;
 }
 .img {
     width: 100%;
@@ -72,17 +100,33 @@
     object-fit: contain;
     display: block;
 }
-
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-color);
+    line-height: 1.6rem;
+    height: 3.2rem;
+    margin: 10px 10px 4px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.card-text{
+    margin: 10px 10px 4px;
+}
 .content {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap; /* Tự động xuống hàng nếu nhỏ */
 }
 
-.content_left {
-    
+.content_left {    
     width: 16.6667%;
-    border-right:1px solid #d2d2d2;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 12px 6px 12px 4px;
 }
 .content_left ul{
     padding:0;
@@ -90,6 +134,9 @@
 .content_right {
     flex: 1;
     width: 83.3333%;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 12px 4px 12px 6px;
 }
 
 /* Responsive */
@@ -108,6 +155,56 @@
 li{
     list-style: none;
 }
+.home_product-item_action {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 10px;
+}
+/* hỗ trợ back end like */
+i.home_product-item_like-empty {
+    cursor: pointer;
+}
+i.home_product-item_like-fill {
+    cursor: pointer;
+    color: #f53333;
+    display: none;
+}
 
+.home_product-item_liked .home_product-item_like-fill {
+    display: inline-block;
+}
+
+.home_product-item_liked .home_product-item_like-empty {
+    display: none;
+}
+
+.home_product-item_rating {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    color: #d5d5d5;
+}
+.home_product-item_rating i {
+    margin-right: 2px;
+    cursor: pointer;
+}
+.home_product-item_rating-gold {
+    color: #ffcd3c;
+}
 </style>
-<!-- tôi muốn cố định khung sản phẩm và ảnh full hình khi mình hover thì cả phần text lẫ nút hiện lên và có nền màu đen và có bóng mờ màu đen -->
+<script>
+document.querySelectorAll('.home_product-item_like').forEach(function(likeBox){
+    const empty = likeBox.querySelector('.home_product-item_like-empty');
+    const fill = likeBox.querySelector('.home_product-item_like-fill');
+
+    empty.addEventListener('click', function(){
+        likeBox.classList.add('home_product-item_liked');
+    });
+
+    fill.addEventListener('click', function(){
+        likeBox.classList.remove('home_product-item_liked');
+    });
+});
+
+
+</script>

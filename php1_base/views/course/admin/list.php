@@ -1,6 +1,6 @@
 <div class="content_header">
   <?php if (isset($message)) echo $message; ?>
-</div><hr> 
+</div>
 <div class="container_content">
     <div class="left_menu"style="position: sticky; position:-webkit-sticky; top: 65px; height: 100vh; align-self: flex-start;">
         <ul class="navbar-nav" >
@@ -69,7 +69,7 @@
     .left_menu{
         padding: 10px;
         width:auto;
-        background-color: #e8e5e5;
+        background-color: #fff4f4ff;
     }
     .content_right{
         flex: 1;

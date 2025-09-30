@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $title ?? 'Base MVC PHP 1' ?></title>
 
+
   <!-- Bootstrap -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -60,10 +61,10 @@
             <a href="<?= BASE_URL . '?action=login' ?>" class="btn btn-outline-light me-2">Đăng nhập</a>
             <a href="<?= BASE_URL . '?action=register' ?>" class="btn btn-primary">Đăng ký</a>
           <?php else: ?>
-            <span class="text-success me-3">Chào, <strong><?= $_SESSION['user'] ?>_san</strong>!</span>
+            <span class="text-white me-3">Chào, <strong><?= $_SESSION['user'] ?>_san</strong>!</span>
             <div class="header-user_infor">
-              <a href="<?= BASE_URL . '?action=infor' ?>" class="btn btn-outline-info me-2">Hồ sơ</a>
-              <a href="<?= BASE_URL . '?action=logout' ?>" class="btn btn-outline-danger">Đăng xuất</a>
+                <a href="<?= BASE_URL . '?action=infor' ?>" class="btn btn-outline-info me-2">Hồ sơ</a>
+                <a href="<?= BASE_URL . '?action=logout' ?>" class="btn btn-outline-danger">Đăng xuất</a>
             </div>
           <?php endif; ?>
         </div>
@@ -104,4 +105,8 @@
     position: sticky;position:-webkit-sticky;
     
   }
+  /* .header-user_infor{
+    display: flex;
+    align-items: center;
+  } */
 </style>

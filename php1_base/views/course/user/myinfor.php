@@ -18,7 +18,7 @@
             <td><?=$data['email']?></td>
             <td><img src="<?= BASE_ASSETS_UPLOADS.$data['avatar_url']?>" alt="" width='100px'></td>
         </tr>            
-        <td><a href="<?=BASE_URL.'?action=edit_user&id='.$data['id']?>"><button class="btn btn-primary">them thông tin của mình</button></a></td>
+        <td><a href="<?=BASE_URL.'?action=edit_user&id='.$data['id']?>"><button class="btn btn-primary">Thêm thông tin của mình</button></a><span class="space" > </span><a href="<?=BASE_URL.'?action=my_article&id='.$data['id']?>"><button class="btn btn-primary">Bài viết của tôi</button></a></td>
     </table>
     <table class="table">
         <tr>
@@ -39,7 +39,7 @@
             <tr>
                 <td><?=$v['coursesId']?></td>
                 <td><?=$v['coursesName']?></td>
-                <td><img src="<?=BASE_ASSETS_UPLOADS.$v['coursesImg']?>" alt="" width="100"></td>
+                <td><a href="<?=BASE_URL."?action=detail&id=".$v['coursesId']?>"><img src="<?=BASE_ASSETS_UPLOADS.$v['coursesImg']?>" alt="" width="100"></a></td>
                 <td><?=$v['instructorName']?></td>
                 <td><?=$v['coursesDes']?></td>
                 <td><?=$v['courses_categoryName']?></td>
@@ -60,7 +60,7 @@
             </div>
             <div class="help_user-tutol_courses">
                 <span>Tổng tiền:</span>
-                <div class="help_user-tutol_courses--input"><?=number_format(array_sum($array_price))?></div>
+                <div class="help_user-tutol_courses--input"><?=isset($array_price) ? number_format(array_sum($array_price)) : 0?></div>
                 <span style="color:red">VND</span>
             </div>
             <a href="" class="btn btn-primary">Thanh toán</a>
@@ -96,3 +96,4 @@
             border-radius: 2px;
         }
     </style>
+    

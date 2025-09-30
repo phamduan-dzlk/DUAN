@@ -47,8 +47,12 @@ if(isset($_GET['mode']) && $_GET['mode']=='admin'){
         'comment'         => (new HomeController)->comment(),
         'category'         => (new HomeController)->category(),
         'contact'         => (new HomeController)->contact(),
-        
-        
+        //sửa thông tin người dùng
         'edit_user'         => (new AdminController)->edit_user(),
+
+        //hiển thị tất cả bài viết 
+        'show_article_list'=> (new HomeController)->show_article_list(),
+        'detail_article'=> (new HomeController)->detail_article(),
+
     };    
 }

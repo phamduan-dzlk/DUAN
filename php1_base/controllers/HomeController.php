@@ -7,6 +7,7 @@ class HomeController
     public $admin;
     public $courses_registration;
     public $comment;
+    public $article;
     function __construct(){
         $this->courses= new Courses();
 
@@ -19,6 +20,8 @@ class HomeController
         $this->courses_registration= new Course_registration();
 
         $this->comment = new Comment();
+
+        $this->article = new Article();
     }
     // hiển thị danh sách khóa học
     public function index() 
@@ -280,7 +283,7 @@ class HomeController
     function contact(){
         $title='liên hệ đến chúng TÔI';
         $view="course/user/contact";
-        require_once PATH_VIEW_MAIN;
+        require_once PATH_VIEW_MAIN;    
     }
     // đăng xuất
     function logout(){
@@ -288,6 +291,27 @@ class HomeController
         session_destroy();
         header("Location: " . BASE_URL);
         exit;
+    }
+    //hiển thị tất cả bài viết
+    function show_article_list(){
+        //lấy tất cả bài viết
+        $data = $this->article->allArticle();
+        //lấy tất cả bài viết của một id người dùng
+        // debug($data);
+        $title='Tất cả bài viết';
+        $view="course/article/epicenter_article";
+        require_once PATH_VIEW_MAIN;    
+    }
+
+    //hiển thị chi tiết bài viết
+    function detail_article(){
+        if(isset($_GET['id'])){
+            $data = $this->article->getArticle($_GET['id']);
+            // debug($data);
+            $title='Chi tiết bài viết';
+            $view="course/article/detail_article";
+            require_once PATH_VIEW_MAIN;    
+        }
     }
 }
 ?>
