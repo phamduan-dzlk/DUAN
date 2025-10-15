@@ -56,15 +56,31 @@
             <?php endif; ?>        
           </Span>
 
-          <!--  -->
+          <!-- thông báo -->
+            <div class="text-white header-user_infor-noti me-3">
+              <span><i class=" fa-solid fa-bell me-2"></i></span>
+              <span><i class=" fa-solid fa-calendar me-2"></i></span>
+            </div>
           <?php if (empty($_SESSION['user'])): ?>
             <a href="<?= BASE_URL . '?action=login' ?>" class="btn btn-outline-light me-2">Đăng nhập</a>
             <a href="<?= BASE_URL . '?action=register' ?>" class="btn btn-primary">Đăng ký</a>
           <?php else: ?>
-            <span class="text-white me-3">Chào, <strong><?= $_SESSION['user'] ?>_san</strong>!</span>
-            <div class="header-user_infor">
-                <a href="<?= BASE_URL . '?action=infor' ?>" class="btn btn-outline-info me-2">Hồ sơ</a>
-                <a href="<?= BASE_URL . '?action=logout' ?>" class="btn btn-outline-danger">Đăng xuất</a>
+            <div class="header-user_infor has-user">
+              <span class="text-white me-3 has-user">Chào, <strong><?= $_SESSION['user'] ?>_san</strong>!</span>
+              <ul class="header-user_infor-list">
+                <li class="header-user_infor-items">
+                  <a href="<?= BASE_URL . '?action=infor' ?>" >Hồ sơ</a>
+                </li>    
+                <li class="header-user_infor-items">
+                  <a href="<?= BASE_URL . '?action=my_article' ?>" >Bài viết của tôi</a>
+                </li>
+                <li class="header-user_infor-items">
+                  <a href="<?= BASE_URL . '?action=show_create_article' ?>" >Tạo bài viết</a>
+                </li>
+                <li class="header-user_infor-items">
+                  <a class="logout" href="<?= BASE_URL . '?action=logout' ?>" >Đăng xuất</a>
+                </li>
+              </ul>
             </div>
           <?php endif; ?>
         </div>
@@ -109,4 +125,44 @@
     display: flex;
     align-items: center;
   } */
+  .header-user_infor{
+    position: relative;
+  }
+  .header-user_infor-list {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #212529;
+    padding: 0;
+    border: 1px solid #ccc;
+    z-index: 1;
+    border-radius: 5px;
+    width: 150px;
+    display: none;
+  }
+  .header-user_infor-items {
+    list-style: none;
+    width: 150px;
+  }
+  .header-user_infor-items a {
+    text-decoration: none;
+    color: #c4c4c4ff;
+    display: block;
+    padding: 8px 20px;
+  }
+  .header-user_infor-items a:hover{
+    background-color: #555;
+    color:white;
+  }
+  a.logout{
+    color: orange;
+    border-top: 1px solid #ccc;
+    margin-top: 8px;
+  }
+  a.logout:hover{
+    color:red;
+  }
+  .has-user:hover  .header-user_infor-list{
+    display: block;
+  }
 </style>

@@ -56,9 +56,7 @@ class HomeController
                     }
                     //debug($data_user);
                     if($v['commenter_type']=='admin'){
-                        $data_comment[]=
-                        [
-                            
+                        $data_comment[]=[
                             'avatar_url'=> 'admin/1.jpg' ?? '',
                             'username'=>$data_admin['adminname'] ?? '',
                             'commenter_type'=> $v['commenter_type'] ?? '',
@@ -66,14 +64,14 @@ class HomeController
                             'isMine' => false,
                         ];                        
                     }else{
-                        $ismine=isset($_SESSION['id_user']) && $_SESSION['id_user'] == $data_user['id'];
-                        $data_comment[]=
-                        [
+                        // Dòng tính toán $ismine (nên sửa để logic rõ ràng hơn)
+                        $ismine = isset($_SESSION['id_user']) && ($_SESSION['id_user'] == ($data_user['id'] ?? null));
+                        $data_comment[]=[
                             'avatar_url'=> $data_user['avatar_url'] ?? '',
                             'username'=>$data_user['username'] ?? '',
                             'commenter_type'=> $v['commenter_type'] ?? '',
                             'content'=> $v['content'] ?? '',
-                            'isMine' => $ismine,
+                            'isMine' => $ismine
                         ];                     
                     }
                 }
@@ -295,23 +293,111 @@ class HomeController
     //hiển thị tất cả bài viết
     function show_article_list(){
         //lấy tất cả bài viết
-        $data = $this->article->allArticle();
+        $data_all_article = $this->article->allArticle();
+        // debug($data_all_article);
+        $data = [];
+        if(!empty($data_all_article)){
+            foreach($data_all_article as $v){
+                $data_user=$this->users->get($v['id_user']);
+                $data[]=[
+                    'id'=>$v['id'],
+                    'id_user'=>$v['id_user'],
+                    'title'=>$v['title'],
+                    'content'=>$v['content'],
+                    'images'=>$v['images'],
+                    'created_at'=>$v['create_at'],
+                    'username'=>$data_user['username'] ?? '',
+                    'avatar_user'=>$data_user['avatar_url'] ?? '',
+                ];
+            }
+        }else{
+            $got_it = "Chưa có bài viết nào";
+        }
         //lấy tất cả bài viết của một id người dùng
         // debug($data);
         $title='Tất cả bài viết';
         $view="course/article/epicenter_article";
         require_once PATH_VIEW_MAIN;    
     }
-
     //hiển thị chi tiết bài viết
     function detail_article(){
         if(isset($_GET['id'])){
-            $data = $this->article->getArticle($_GET['id']);
-            // debug($data);
+            $data_article = $this->article->getArticle($_GET['id']);
+            $data_user=$this->users->get($data_article['id_user']);
+            $data_authors = [];
+            $data = [];
+            //lấy tât cả bài viết của tác giả *
+            //lấy hết bài viết cùng tác giả
+            $data_authur_article = $this->article->getArticle_by_user($data_article['id_user']);
+            foreach ($data_authur_article as $v) {
+                //lặp qua mảng và nếu article_id trùng với $_GET['id'] thì bỏ qua
+                if ($v['id'] == $_GET['id']) {
+                    continue; // Bỏ qua bài viết hiện tại
+                }
+                $data_user_authur=$this->users->get($v['id_user']);
+                $data_authors[]=[
+                    'id'=>$v['id'],
+                    'id_user'=>$v['id_user'],
+                    'title'=>$v['title'],
+                    'content'=>$v['content'],
+                    'images'=>$v['images'],
+                    'created_at'=>$v['create_at'],
+                    'username'=>$data_user_authur['username'] ?? '',
+                    'avatar_user'=>$data_user_authur['avatar_url'] ?? '',
+                ];
+            }
+            //lấy tất cả bài viết
+            $data_all_article = $this->article->allArticle();
+            foreach($data_all_article as $v){
+                $data_user_all=$this->users->get($v['id_user']);
+                $data[]=[
+                    'id'=>$v['id'],
+                    'id_user'=>$v['id_user'],
+                    'title'=>$v['title'],
+                    'content'=>$v['content'],
+                    'images'=>$v['images'],
+                    'created_at'=>$v['create_at'],
+                    'username'=>$data_user_all['username'] ?? '',
+                    'avatar_user'=>$data_user_all['avatar_url'] ?? '',
+                ];
+            }
+
+
+            // debug($data_article);
             $title='Chi tiết bài viết';
             $view="course/article/detail_article";
             require_once PATH_VIEW_MAIN;    
         }
     }
+    //hiển thị bài viết của tôi
+    function my_article(){
+        $title='Bài viết của tôi';
+        $view="course/article/my_article";
+        require_once PATH_VIEW_MAIN;    
+    }
+    //hiển thị form tạo bài viết
+    function show_create_article(){
+        $title='Tạo bài viết mới';
+        $view="course/article/create_article";
+        require_once PATH_VIEW_MAIN;    
+    }
+    //xử lý tạo bài viết
+    function create_article(){
+        if($_SERVER['REQUEST_METHOD'] == $_POST){
+            //kiểm tra xem có đăng nhập chưa
+            $data = $_POST + $_FILES;
+            if($data['images']['size']>0 ){
+                $data['images'] = upload_file('article',$data['images']);
+            }else{
+                $data['images'] = '';
+            }
+            $this->article->insert($data);
+        }
+        header('LOCATION:'.BASE_URL.'?action=my_article');
+        exit;
+    }
+    //
+    //xử lý sửa bài viết
+    //xử lý thêm bình luận bài viết
 }
 ?>

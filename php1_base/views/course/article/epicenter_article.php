@@ -5,19 +5,21 @@
     </h3>
     <div class="article_list" >
         <div class="article_user-grid">
+            <?php if(!empty($got_it)) echo $got_it; ?>
+            <?php foreach($data as $v){?>
             <div class="article_user-item card shadow-sm border-0 mb-4" style="width: 90%;">
                 <div class="card-body">
                     <!-- Thông tin user -->
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <div class="heading d-flex">
-                            <a href="<?=BASE_URL . '?action=user_profile&id=7'?>">
-                                <div class="img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4EGg4awa6G3iKK0_mB1JsuaJPNdprP0CTeg&s'); width: 50px; height: 50px; border-radius: 50%; background-size: cover; background-position: center;"></div>
+                            <a href="<?=BASE_URL . '?action=my_article&id='.$v['id_user']?>">
+                                <div class="img" style="background-image: url('<?=BASE_ASSETS_UPLOADS . $v['avatar_user']?>'); width: 50px; height: 50px; border-radius: 50%; background-size: cover; background-position: center;"></div>
                             </a>
                             <div class="user-info">
                                 <a href="" class="text-decoration-none text-dark">
-                                    <h5 class="mb-0">Người bí ẩn</h5>
+                                    <h5 class="mb-0"><?=$v['username']?></h5>
                                 </a>
-                                <small class="text-muted">10 phút trước</small>
+                                <small class="text-muted"><?=$v['created_at']?></small>
                             </div>
                         </div>
                         <div class="actions">
@@ -28,40 +30,27 @@
                     </div>
 
                     <!-- Nội dung bài viết -->
-                    <a href="<?=BASE_URL . '?action=detail_article&id=1'?>" class="text-decoration-none text-dark">
+                    <a href="<?=BASE_URL . '?action=detail_article&id='.$v['id']?>" class="text-decoration-none text-dark">
                         <div class="row g-3">
                             <div class="col-md-8">
-                                <h3 class="h5 fw-bold">Tình anh em bền lâu</h3>
+                                <h3 class="h5 fw-bold"><?=$v['title']?></h3>
                                 <p class="mb-0 line-clamp-3">
-                                    Tình anh em bền lâu gian khổ vẫn bên nhau, khi tương lai mai sau
-                                    vẫn giữ lấy một lời thề. Dù cho mai già đi gian khổ vẫn vây quanh,
-                                    khi anh em bên nhau ta vẫn sống trọn thề.
-                                    Tình anh em bền lâu gian khổ vẫn bên nhau, khi tương lai mai sau
-                                    vẫn giữ lấy một lời thề. Dù cho mai già đi gian khổ vẫn vây quanh,
-                                    khi anh em bên nhau ta vẫn sống trọn thề.
+                                    <?=$v['content']?>
                                 </p>
                             </div>
                             <div class="col-md-4 thumbnail_style">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4EGg4awa6G3iKK0_mB1JsuaJPNdprP0CTeg&s" alt="" class="img-fluid rounded">
-                                <div class="sub-img">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4EGg4awa6G3iKK0_mB1JsuaJPNdprP0CTeg&s" alt="" class="img-fluid rounded">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4EGg4awa6G3iKK0_mB1JsuaJPNdprP0CTeg&s" alt="" class="img-fluid rounded">
-                                </div>
+                                <img src="<?=BASE_ASSETS_UPLOADS .$v['images']?>" alt="" class="img-fluid rounded">
+                                <!-- <div class="sub-img">
+                                    <img src="<?//BASE_ASSETS_UPLOADS . $v['images']?>" alt="" class="img-fluid rounded">
+                                    <img src="<?//BASE_ASSETS_UPLOADS . $v['images']?>" alt="" class="img-fluid rounded">
+                                </div> -->
                             </div>
                         </div>
                     </a>
 
                 </div>
             </div>
-
-            <!-- tiêu đề -->
-            <!-- chèn ảnh  -->
-            <!-- chèn icons -->
-            <!-- đổi màu nền viết -->
-            <!-- nội dung bài viết -->
-            <!-- submit form -->
-
-
+            <?php }?>
         </div>
     </div>
     <style>

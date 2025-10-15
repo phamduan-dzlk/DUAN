@@ -1,4 +1,8 @@
 <div class="container my-4">
+    <a href="<?=BASE_URL?>" class="btn btn-secondary mb-3">← Trở lại</a>
+    <h3 class="content_right-title">
+        <?=$title ?? ''?>
+    </h3><br>
     <div class="article_user-my_article">
                 <div class="article_user-grid">
             <div class="article_user-item card shadow-sm border-0 mb-4" style="width: 90%;">
@@ -6,9 +10,8 @@
                     <!-- Thông tin user -->
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <div class="heading d-flex">
-                            <a href="<?=BASE_URL . '?action=user_profile&id=7'?>">
-                                <div class="img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4EGg4awa6G3iKK0_mB1JsuaJPNdprP0CTeg&s'); width: 50px; height: 50px; border-radius: 50%; background-size: cover; background-position: center;"></div>
-                            </a>
+                            
+                            <div class="img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4EGg4awa6G3iKK0_mB1JsuaJPNdprP0CTeg&s'); width: 50px; height: 50px; border-radius: 50%; background-size: cover; background-position: center;"></div>
                             <div class="user-info">
                                 <a href="" class="text-decoration-none text-dark">
                                     <h5 class="mb-0">Người bí ẩn</h5>
@@ -24,7 +27,7 @@
                     </div>
 
                     <!-- Nội dung bài viết -->
-                    <a href="<?=BASE_URL . '?action=detail_article&id=1'?>" class="text-decoration-none text-dark">
+                    <a href="" class="text-decoration-none text-dark">  
                         <div class="row g-3">
                             <div class="col-md-8">
                                 <h3 class="h5 fw-bold">Tình anh em bền lâu</h3>
@@ -55,4 +58,21 @@
         <!-- Thao tác lên bài viết -->
         <!-- bài viết [caption, ảnh]-->
     </div>
+    <style>
+      .detail_article{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+      .thumbnail_style{
+        display: flex;
+        gap: 5px;
+      }
+      .sub-img{
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+      }
+    </style>
 </div>
+chưa làm

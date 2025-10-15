@@ -46,7 +46,7 @@
                 <td><?=$v['coursesDura']?></td>
                 <td><?=number_format($v['price'])?></td>
                 <td>
-                    <a href="<?=BASE_URL.'?action=delete&id='.$v['coursesId']?>" class="btn btn-primary" onclick=" return(confirm('bạn có muốn xóa không?'))" >xóa</a>
+                    <a href="<?=BASE_URL.'?action=delete&id='.$v['coursesId']?>" class="btn btn-danger" onclick=" return(confirm('bạn có muốn xóa không?'))" >xóa</a>
                 </td>
             </tr>
             <?php
@@ -63,7 +63,7 @@
                 <div class="help_user-tutol_courses--input"><?=isset($array_price) ? number_format(array_sum($array_price)) : 0?></div>
                 <span style="color:red">VND</span>
             </div>
-            <a href="" class="btn btn-primary">Thanh toán</a>
+            <a href="" class="btn btn-success">Thanh toán</a>
         </div>
     </div>
     <style>

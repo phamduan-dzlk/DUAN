@@ -53,6 +53,9 @@ if(isset($_GET['mode']) && $_GET['mode']=='admin'){
         //hiển thị tất cả bài viết 
         'show_article_list'=> (new HomeController)->show_article_list(),
         'detail_article'=> (new HomeController)->detail_article(),
-
+        'my_article'=> (new HomeController)->my_article(),
+        'show_create_article'=> (new HomeController)->show_create_article(),
+        'add_article'=> (new HomeController)->add_article(),
+        'create_article'=> (new HomeController)->create_article(),
     };    
 }

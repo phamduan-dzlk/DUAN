@@ -185,6 +185,7 @@ class AdminController {
             $this->courses->add($data);           
         }
         header('location:'.BASE_URL_ADMIN);
+        exit;
     }
     // show form sửa khóa học
     function edit(){
