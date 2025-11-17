@@ -36,14 +36,14 @@ class Article extends BaseModel{
     }
     function insert($data)
     {
-        $sql = "INSERT INTO article (`id_user`, `title`, `content`, `create_at`, `images`)
-                VALUES (:title, :content, :user_id)";
+        $sql = "INSERT INTO article (`id_user`, `title`, `content`, `images`)
+                VALUES (:id_user, :title, :content, :images)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($data);
     }
     function update($data)
     {
-        $sql = "UPDATE article SET title=:title, content=:content, user_id=:user_id
+        $sql = "UPDATE article SET title=:title, content=:content,images=:images
                 WHERE id=:id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($data);

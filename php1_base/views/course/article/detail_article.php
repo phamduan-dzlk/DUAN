@@ -8,7 +8,7 @@
       <!--Chi tiết Bài viết -->
       <div class="d-flex align-items-center justify-content-between mb-3">
         <div class="heading d-flex">
-            <a href="<?=BASE_URL . '?action=my_article&id=' . $data_user['id']?>">
+            <a href="<?=BASE_URL . '?action=their_article&id=' . $data_user['id']?>">
                 <div class="img" style="background-image: url('<?= BASE_ASSETS_UPLOADS . $data_user['avatar_url']?>'); width: 50px; height: 50px; border-radius: 50%; background-size: cover; background-position: center;"></div>
             </a>
             <div class="user-info">
@@ -19,8 +19,13 @@
             </div>
         </div>
         <div class="actions">
-            <button class="btn btn-sm btn-outline-secondary me-2"><i
-                    class="fa-solid fa-ellipsis"></i></button>
+            <button class="btn btn-sm btn-outline-secondary me-2" data-bs-toggle="dropdown"><i
+                    class="fa-solid fa-ellipsis"></i>
+              <ul class="dropdown-menu">
+                  <li><a href="" class="dropdown-item">tố cáo vi phạm</a></li>
+                  <li><a href="" class="dropdown-item">theo dõi</a></li>
+              </ul>      
+            </button>
             <button class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-bookmark"></i></button>
         </div>
       </div>
@@ -44,8 +49,8 @@
                   <!-- Thông tin user -->
                   <div class="d-flex align-items-center justify-content-between mb-3">
                       <div class="heading d-flex">
-                          <a href="<?=BASE_URL . '?action=user_profile&id=7'?>">
-                              <div class="img" style="background-image: url('<?= BASE_ASSETS_UPLOADS . $v['avatar_url']?>'); width: 50px; height: 50px; border-radius: 50%; background-size: cover; background-position: center;"></div>
+                          <a href="<?=BASE_URL . '?action=user_profile&id=' . $v['id_user']?>">
+                            <div class="img" style="background-image: url('<?= BASE_ASSETS_UPLOADS . $data_user['avatar_url']?>'); width: 50px; height: 50px; border-radius: 50%; background-size: cover; background-position: center;"></div>
                           </a>
                           <div class="user-info">
                               <a href="" class="text-decoration-none text-dark">
@@ -56,7 +61,12 @@
                       </div>
                       <div class="actions">
                           <button class="btn btn-sm btn-outline-secondary me-2"><i
-                                  class="fa-solid fa-ellipsis"></i></button>
+                                  class="fa-solid fa-ellipsis"></i>
+                          </button>
+                          <ul class="dropdown-menu">
+                              <li><a href="" class="dropdown-item">tố cáo vi phạm</a></li>
+                              <li><a href="" class="dropdown-item">theo dõi</a></li>
+                          </ul>
                           <button class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-bookmark"></i></button>
                       </div>
                   </div>
@@ -95,6 +105,9 @@
         display: flex;
         gap: 5px;
         flex-direction: column;
+      }
+      .dropdown-item:hover{
+        color:orange;
       }
     </style>
   </main>

@@ -55,7 +55,12 @@ if(isset($_GET['mode']) && $_GET['mode']=='admin'){
         'detail_article'=> (new HomeController)->detail_article(),
         'my_article'=> (new HomeController)->my_article(),
         'show_create_article'=> (new HomeController)->show_create_article(),
-        'add_article'=> (new HomeController)->add_article(),
         'create_article'=> (new HomeController)->create_article(),
+        'delete_article'=> (new HomeController)->delete_article(),
+        'show_form_update'=> (new HomeController)->show_form_update(),
+        'update_article'=> (new HomeController)->update_article(),
+        
+        
+        'show_unit'=> (new HomeController)->show_unit(),
     };    
 }

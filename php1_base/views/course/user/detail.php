@@ -110,7 +110,7 @@ if(isset($_GET['id'])){
         <?php }?>
     </div>
 </div>
-
+<a href="<?= BASE_URL.'?action=show_unit'?>">test video</a>
 <!-- CSS bổ sung -->
 <style>
     .my {

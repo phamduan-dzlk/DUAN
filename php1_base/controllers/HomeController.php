@@ -41,9 +41,12 @@ class HomeController
         if(isset($_GET['id'])){
             $course_comment = $_GET['id'];
             $data = $this->courses->get($course_comment);
-            // debug($data);
+
             $comment = $this->comment->get_comment($course_comment);
-            //debug($comment);
+
+            //xử chuyển sang trang video nêu đã đăng khý khóa học
+            //truy vấn tất cả các khóa học mà mình đã đăng ký sau đó so sánh id của cái get['id'] nấu có thì để chuyển sang trang video để học còn không thì để im
+            //nhưng nếu mình để ở đây thì bình luận sẽ vô nghĩa hay mình để trong hàm takecourse nhỉ hoặc là chuyển phần bình luận vào trong bài viết nhỉ người cần học thì cứ đăng ký thôi dù gì cũng chưa có gì
             if(empty($comment)){
                 $_SESSION['msg']="không có bình luận nào";
                 $data_comment=[];
@@ -75,13 +78,7 @@ class HomeController
                         ];                     
                     }
                 }
-            }
-            // echo "<pre>";
-            // echo "data_comment";   
-            // print_r($data_comment);   
-            // echo "comment";    
-            // print_r($comment);     
-                    
+            }   
             if(!isset($_SESSION['user'])){
                 $message = "<p style='color: red;'>Bạn hãy đăng nhập để đăng ký khóa học.</p>";
             }
@@ -95,7 +92,7 @@ class HomeController
         if(!isset($_SESSION['user'])){
             $_SESSION['msg'] = "bạn cần đăng nhập để bình luận";
             $_SESSION['status'] = false;
-            header('location:'.BASE_URL);
+            header('location:'.BASE_URL.'?action=login');
             exit; 
         }else{
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -126,11 +123,7 @@ class HomeController
             exit;
         }
     }
-    //tôi muốn tạo ra một hàm để in dữ liệu ra ngoài để cho mọi người nhận biết bao gồm
-    //tên người dùng, ảnh đại diện bảng người dùng
-    //nội dung comment in bảng comment, kiểm tra xem đâu là tin nhắn của mình
-    //thêm vào bảng comment, nội dung loại người, 
-    //ANG KÝ khóa học
+    //đăng ký khóa học
     function takecourse(){
         $data = $this->courses->getAll();
         if(!empty($_SESSION['user'])){
@@ -138,11 +131,12 @@ class HomeController
                 // debug($_SESSION['user']);
                 $_SESSION['id_course']=$_GET['id'];
                 $row=$this->courses_registration->add($_SESSION['id_user'],$_SESSION['id_course']);
-                //đánh dấu
+                // thêm khóa học vào hồ sơ và trả về số dòng thay đổi rowcount
                 $course = $this->courses->get($_SESSION['id_course']);
-                //debug($user);
+                //
                 if($row == 0){
                     $_SESSION['msg']="Bạn đã đăng ký khóa học này rồi.";
+                    //cái này là tiền đề  để chuyển hứng sang trang video
                     $_SESSION['status']=false;                    
                 }else{
                     $_SESSION['msg']="Bạn đã đăng ký khóa học thành công:{$course['name']}";
@@ -151,9 +145,11 @@ class HomeController
             }else{
                 $message = "<p style='color: red;'>Thiếu ID khóa học.</p>";
             }
-            
         }else{
             $message = "<p style='color: red;'>Bạn hãy đăng nhập để đăng ký khóa học.</p>";
+            $title='Đăng Nhập';
+            $view="course/user/login";
+            require_once PATH_VIEW_MAIN;
         }
         $title='Danh sách khóa học';
         $view="course/user/list";
@@ -305,7 +301,7 @@ class HomeController
                     'title'=>$v['title'],
                     'content'=>$v['content'],
                     'images'=>$v['images'],
-                    'created_at'=>$v['create_at'],
+                    'create_at'=>$v['create_at'],
                     'username'=>$data_user['username'] ?? '',
                     'avatar_user'=>$data_user['avatar_url'] ?? '',
                 ];
@@ -341,7 +337,7 @@ class HomeController
                     'title'=>$v['title'],
                     'content'=>$v['content'],
                     'images'=>$v['images'],
-                    'created_at'=>$v['create_at'],
+                    'create_at'=>$v['create_at'],
                     'username'=>$data_user_authur['username'] ?? '',
                     'avatar_user'=>$data_user_authur['avatar_url'] ?? '',
                 ];
@@ -356,7 +352,7 @@ class HomeController
                     'title'=>$v['title'],
                     'content'=>$v['content'],
                     'images'=>$v['images'],
-                    'created_at'=>$v['create_at'],
+                    'create_at'=>$v['create_at'],
                     'username'=>$data_user_all['username'] ?? '',
                     'avatar_user'=>$data_user_all['avatar_url'] ?? '',
                 ];
@@ -371,6 +367,22 @@ class HomeController
     }
     //hiển thị bài viết của tôi
     function my_article(){
+        $getArticle_by_user = $this->article->getArticle_by_user($_SESSION['id_user']);
+        $user = $this->users->get($_SESSION['id_user']);
+        $data=[];
+        foreach($getArticle_by_user as $v){
+            $data[]=[
+                'username'=> $user['username'],
+                'avatar_url'=> $user['avatar_url'],
+                'id_user'=> $v['id_user'],  
+                'title'=> $v['title'],
+                'content'=> $v['content'],
+                'images'=> $v['images'],
+                'create_at'=> $v['create_at'],
+                'id'=>$v['id']
+            ];
+        }
+        // debug($data);
         $title='Bài viết của tôi';
         $view="course/article/my_article";
         require_once PATH_VIEW_MAIN;    
@@ -383,21 +395,70 @@ class HomeController
     }
     //xử lý tạo bài viết
     function create_article(){
-        if($_SERVER['REQUEST_METHOD'] == $_POST){
-            //kiểm tra xem có đăng nhập chưa
+        //thêm phần tử id_user vào cuối mảng
+        
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $data = $_POST + $_FILES;
+            $data['id_user'] = $_SESSION['id_user'] ?? 0;
             if($data['images']['size']>0 ){
                 $data['images'] = upload_file('article',$data['images']);
             }else{
                 $data['images'] = '';
             }
+            // debug($data);
             $this->article->insert($data);
         }
         header('LOCATION:'.BASE_URL.'?action=my_article');
         exit;
     }
-    //
+    //xử lý xóa bài viết
+    function delete_article(){
+        if(isset($_GET['id'])){
+            $row = $this->article->delete($_GET['id']);
+            if($row ===1){
+                $_SESSION['msg']="đã xóa thành công!";
+                $_SESSION['status'] = true;
+            }
+            header('LOCATION:'.BASE_URL.'?action=my_article');
+            exit;
+        }  
+    }
     //xử lý sửa bài viết
+    function show_form_update(){
+        if(isset($_GET['id'])){
+            $data = $this->article->getArticle($_GET['id']);
+            // debug($data);
+            $title='Sửa bài viết';
+            $view="course/article/update_article";
+            require_once PATH_VIEW_MAIN;   
+        }
+    }
+    function update_article(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $data = $_POST + $_FILES;
+            $article=$this->article->getArticle($_POST['id']);
+            // debug($data, $article);
+            //
+            if($data['images']['size']>0){
+                $data['images']=upload_file('user',$data['images']);
+            }else{
+                $data['images']=$article['images'];
+            }
+            $row=$this->article->update($data); 
+            if($row > 0 && file_exists($article['images'])){
+                unlink($article['images']);
+            }        
+            header('location:'.BASE_URL.'?action=my_article');
+            exit;   
+        }
+    }
     //xử lý thêm bình luận bài viết
+
+    //show unit
+    function show_unit(){
+        $title='teen bai';
+        $view="course/learn";
+        require_once PATH_VIEW_MAIN;   
+    }
 }
 ?>

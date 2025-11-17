@@ -1,9 +1,10 @@
-<div class="content">
+<div class="content " >
+    <!-- menu con -->
     <div class="content_left " style="position: sticky; position:-webkit-sticky; top: 65px; height: 100vh; align-self: flex-start; ">
         <ul class="navbar-nav" >
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-road"></i>  Lộ trình
+                    <i class="fa-solid fa-road "></i>  Lộ trình
                 </a>
 
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -20,9 +21,8 @@
                 </a>
             </li>
         </ul>
-    
     </div>
-    <div class="content_right">
+    <div class="content_right" style="background-color:#f5f5f5;">
         <form class="d-flex my-3" action="" method="get" >
             <!-- đây gửi đi điều muốn tìm kiếm kèm theo một post ẩn mang giá trị là action để chuyển hướng -->
             <input type="hidden" name="action" value="search" id="">
@@ -30,16 +30,15 @@
             <button class="btn btn-outline-primary" type="submit">🔍</button>
             <!-- chuyển đến controller -->
         </form>
-        <!--  -->
+        <!-- nội dung bên trong -->
         <h3 class="content_right-title"><?=$title ?? ''?></h3>
         <div class="row">
             <?php foreach($dataAll ?? $data as $v){?>
-                <div class="col-6 col-md-3 mb-4 p-3" style="flex-wrap: wrap;">
+                <div class="col-6 col-md-3 mb-5 p-3" style="flex-wrap: wrap;">
                     <div class="card">
                         <a class="items-link" href="<?=BASE_URL.'?action=detail&id='.$v['id']?>">
                             <div class="img" >
                                 <img src="<?=BASE_ASSETS_UPLOADS .$v['thumbnail']?>" class="card-img-bottom text-center" alt="Hình sản phẩm">
-                                
                             </div>
                             <div class=" text-left">
                                 <h5 class="card-title"><?=$v['name']?></h5>
@@ -131,10 +130,23 @@
 .content_left ul{
     padding:0;
 }
+.nav-link{
+    padding:10px
+}
+.nav-link:hover{
+    color:orange;
+    padding-left: 15px;
+    transition: all ease-in 0.2s;
+}
+.dropdown-item:hover{
+    color:orange;
+    padding-left: 20px;
+    transition: all ease-in 0.2s;
+}
 .content_right {
     flex: 1;
     width: 83.3333%;
-    background-color: #fff;
+    background-color: #f5f5f5;
     border-radius: 3px;
     padding: 12px 4px 12px 6px;
 }
